@@ -78,6 +78,15 @@ if (isset($_POST["knop"])) {
                     <input type="text" name="email" placeholder="Email">
                     <input type="password" name="pass" placeholder="Password">
                     <a class="forgot text-muted" href="aanmelden.php"> Nog geen account? Klik hier</a>
+                    <br>
+                    <?php
+                    if (isset($_GET["newpwd"])) {
+                        if ($_GET["newpwd"] == "passwordupdated"){
+                            echo '<p class="signupsuccess">Uw wachtwoord is gereset!</p>';
+                        }
+                    }
+                    ?>
+                    <a class="forgot text-muted" href="wachtwoordvergeten.php"> Wachtwoord vergeten? Klik hier</a>
                     <div class="container-login100-form-btn">
                         <div class="wrap-login100-form-btn">
                             <div class="login100-form-bgbtn"></div>
