@@ -4,7 +4,7 @@
 
 
 
-        $sql = "UPDATE tblgebruikers SET status = 0 WHERE volgnummer = " . $_SESSION["gebruiker"]["volgnummer"];
+        $sql = "UPDATE tblgebruikers SET status = '0' WHERE volgnummer = " . $_SESSION["gebruiker"]["volgnummer"];
         print $sql;
 
         if (!$resultaat = $mysqli->query($sql)) {

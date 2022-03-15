@@ -37,7 +37,7 @@ if (isset($_POST["knop"])) {
         if (!$resultaat = $mysqli->query($sql)) {
             print $mysqli->error;
         } else {
-            $sql1 = "UPDATE tblgebruikers SET status = 1 WHERE email='" . $email . "' AND wachtwoord='" . $passwoord . "'";
+            $sql1 = "UPDATE tblgebruikers SET status = '1' WHERE email='" . $email . "' AND wachtwoord='" . $passwoord . "'";
             $resultaat1 = $resultaat = $mysqli->query($sql);
             header("location: ../index.php");
         }

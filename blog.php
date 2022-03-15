@@ -36,12 +36,6 @@ include "connect.php";
         <div class="container">
             <div class="row">
                 <div class="col-lg-6">
-                    <div class="header__top__left">
-                        <ul>
-                            <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                            <li>Free Shipping for all Order of $99</li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="col-lg-6">
                     <div class="header__top__right">
@@ -51,17 +45,8 @@ include "connect.php";
                             <a href="#"><i class="fa fa-linkedin"></i></a>
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
-                        <div class="header__top__right__language">
-                            <img src="img/language.png" alt="">
-                            <div>English</div>
-                            <span class="arrow_carrot-down"></span>
-                            <ul>
-                                <li><a href="#">Spanis</a></li>
-                                <li><a href="#">English</a></li>
-                            </ul>
-                        </div>
                         <div class="header__top__right__auth">
-                            <a href="Login/logout.php.php"><i class="fa fa-user"></i> Logout</a>
+                            <a href="Login/logout.php"><i class="fa fa-user"></i> Logout</a>
                         </div>
                     </div>
                 </div>
@@ -82,7 +67,7 @@ include "connect.php";
                     <h2>Gebruikers</h2>
                     <div class="breadcrumb__option">
                         <a href="index.php">Home</a>
-                        <span>Gebruikers</span>
+                        <a href="account.php">Account</a>
                     </div>
                 </div>
             </div>

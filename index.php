@@ -117,8 +117,12 @@ if (!isset($_SESSION["gebruiker"])) {
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="Login/logout.php"><i class="fa fa-user"></i> Logout</a>
+                                <a href="Login/logout.php"><i class="fa fa-user"></i> Logout | </a>
                             </div>
+                            <div class="header__top__right__auth">
+                                <a href="account.php">Account</a>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -144,7 +148,7 @@ if (!isset($_SESSION["gebruiker"])) {
                                 </ul>-->
                             </li>
 
-                            <li><a href='blog.php'>Gebruikers</a></li>
+                            <li><a href='contact.html'>Contact</a></li>
 
                             <li><a href='toevoegen.php'>Toevoegen</a></li>
 
