@@ -1,7 +1,22 @@
 <?php
 include "connect.php";
 session_start();
-$page = $_SERVER['REQUEST_URI']
+$page = $_SERVER['REQUEST_URI'];
+
+if (isset($_POST["knop"])) {
+    $voornaam = $_POST["voornaam"];
+    $naam = $_POST["naam"];
+    $email = $_POST["email"];
+    $telefoonnummer = $_POST["telefoonnummer"];
+
+    $sql = "UPDATE tblgebruikers
+        SET naam ='" . $naam . "', voornaam ='" . $voornaam . "',email ='" . $email . "', telefoonnummer ='" . $telefoonnummer . "'
+        WHERE volgnummer =" . $_SESSION['gebruiker']['volgnummer'];
+
+    $resultaat = $mysqli->query($sql);
+
+}
+header("location:account.php");
 
 ?>
 
@@ -70,6 +85,7 @@ $page = $_SERVER['REQUEST_URI']
 <!-- Header Section End -->
 
 
+
 <!-- Breadcrumb Section Begin -->
 <section class="breadcrumb-section set-bg" data-setbg="img/breadcrumb.jpg">
     <div class="container">
@@ -105,21 +121,21 @@ $page = $_SERVER['REQUEST_URI']
             <div class="col-md-6">
                 <div class="profile-head">
 
-                        <?php
-                        $sql = "SELECT naam AND voornaam FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                        $resultaat = $mysqli->query($sql);
-                        print "<h5>". $_SESSION["gebruiker"]["naam"] . " " . $_SESSION["gebruiker"]["voornaam"]. "</h5>";
-                        ?>
+                    <?php
+                    $sql = "SELECT naam AND voornaam FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
+                    $resultaat = $mysqli->query($sql);
+                    print "<h5>". $_SESSION["gebruiker"]["naam"] . " " . $_SESSION["gebruiker"]["voornaam"]. "</h5>";
+                    ?>
 
-                        <?php
-                        $sql = "SELECT admin FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                        $resultaat = $mysqli->query($sql);
-                        if ($_SESSION["gebruiker"]["admin"] === '1'){
-                            print "<h6>Admin</h6>";
-                        } else {
-                            print "<p> Verkoper of koper </p>";
-                        }
-                        ?>
+                    <?php
+                    $sql = "SELECT admin FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
+                    $resultaat = $mysqli->query($sql);
+                    if ($_SESSION["gebruiker"]["admin"] === '1'){
+                        print "<h6>Admin</h6>";
+                    } else {
+                        print "<p> Verkoper of koper </p>";
+                    }
+                    ?>
                     </h6>
                     <?php
                     $sql = "SELECT status FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
@@ -142,9 +158,6 @@ $page = $_SERVER['REQUEST_URI']
                 </div>
             </div>
 
-            <div class="col-md-2">
-                <a href="edit_account.php">Edit profiel</a>
-            </div>
         </div>
         <div class="row">
             <div class="col-md-4">
@@ -161,6 +174,7 @@ $page = $_SERVER['REQUEST_URI']
                     <a href="">Link</a><br/>
                 </div>
             </div>
+            <form method="post" action="edit_account.php">
             <div class="col-md-8">
                 <div class="tab-content profile-tab" id="myTabContent">
                     <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
@@ -169,11 +183,8 @@ $page = $_SERVER['REQUEST_URI']
                                 <label>Name</label>
                             </div>
                             <div class="col-md-6">
-                                <?php
-                                $sql = "SELECT naam AND voornaam FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                                $resultaat = $mysqli->query($sql);
-                                print "<p>". $_SESSION["gebruiker"]["naam"] . " " . $_SESSION["gebruiker"]["voornaam"]. "</p>";
-                                ?>
+                                <input type="text" name="voornaam" placeholder="Jan">
+                                <input type="text" name="naam" placeholder="Peters">
                             </div>
                         </div>
                         <div class="row">
@@ -181,11 +192,7 @@ $page = $_SERVER['REQUEST_URI']
                                 <label>Email</label>
                             </div>
                             <div class="col-md-6">
-                                <?php
-                                $sql = "SELECT email FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                                $resultaat = $mysqli->query($sql);
-                                print "<p>". $_SESSION["gebruiker"]["email"] ."</p>";
-                                ?>
+                                <input type="text" name="email" placeholder="mail@mail.com">
                             </div>
                         </div>
                         <div class="row">
@@ -193,35 +200,30 @@ $page = $_SERVER['REQUEST_URI']
                                 <label>Phone</label>
                             </div>
                             <div class="col-md-6">
-                                <?php
-                                $sql = "SELECT telefoonnummer FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                                $resultaat = $mysqli->query($sql);
-                                print "<p>". $_SESSION["gebruiker"]["telefoonnummer"] ."</p>";
-                                ?>
+                                <input type="text" name="telefoonnummer" placeholder="+324 12 34 56 78">
+
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-md-6">
-                                <label>Admin</label>
+                                <label>Wachtwoord</label>
                             </div>
                             <div class="col-md-6">
-                                <?php
-                                $sql = "SELECT admin FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                                $resultaat = $mysqli->query($sql);
-                                if ($_SESSION["gebruiker"]["admin"] === '1'){
-                                    print "<p> <a href='blog.php'>ga naar admin </a></p>";
-                                } else {
-                                    print "";
-                                }
-                                ?>
+                                <a href="wachtwoord.php">Wachtwoord veranderen? Klik hier</a>
                             </div>
                         </div>
-                    </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="submit" name="knop" class="btn btn-primary" value="Verander gegevens">
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
+            </form>
         </div>
-    </form>
+</div>
+</div>
+</form>
 </div>
 </body>
