@@ -42,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "GET")
             $mysqli->query($query);
             $page = $_SESSION['page'];
             $_SESSION['page'] = "";
-            $_SESSION['gebruiker']['profielFoto'] = $filename;
+            $_SESSION['gebruiker']['Profielfoto'] = $filename;
             header(("Location:" . $page));
             die;
         }

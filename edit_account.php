@@ -14,9 +14,14 @@ if (isset($_POST["knop"])) {
         WHERE volgnummer =" . $_SESSION['gebruiker']['volgnummer'];
 
     $resultaat = $mysqli->query($sql);
+    $_SESSION["gebruiker"]["voornaam"] = $voornaam;
+    $_SESSION["gebruiker"]["naam"] = $naam;
+    $_SESSION["gebruiker"]["email"] = $email;
+    $_SESSION["gebruiker"]["telefoonnummer"] = $telefoonnummer;
 
+    header("location:account.php");
 }
-header("location:account.php");
+
 
 ?>
 

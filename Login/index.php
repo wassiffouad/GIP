@@ -12,7 +12,6 @@ if (isset($_POST["knop"])) {
     $passwoord = str_replace("'", "", $passwoord);
 
     $sql = "SELECT * FROM tblgebruikers WHERE email='" . $email . "' AND wachtwoord='" . $passwoord . "'";
-    print $sql;
 
 
 
@@ -35,6 +34,7 @@ if (isset($_POST["knop"])) {
 
 
         if (!$resultaat = $mysqli->query($sql)) {
+            print '<h3>Foute inloggegevens </h3>';
             print $mysqli->error;
         } else {
             $sql1 = "UPDATE tblgebruikers SET status = '1' WHERE email='" . $email . "' AND wachtwoord='" . $passwoord . "'";
@@ -74,9 +74,9 @@ if (isset($_POST["knop"])) {
             <div class="card">
                 <form method="post"  class="box">
                     <h1>Login</h1>
-                    <p class="text-muted"> Please enter your login and password!</p>
+                    <p class="text-muted"> Log hier in!</p>
                     <input type="text" name="email" placeholder="Email">
-                    <input type="password" name="pass" placeholder="Password">
+                    <input type="password" name="pass" placeholder="Wachtwoord">
                     <a class="forgot text-muted" href="aanmelden.php"> Nog geen account? Klik hier</a><br>
                     <a class="forgot text-muted" href="password-reset.php"> Wachtwoord vergeten? Klik hier</a>
                     <div class="container-login100-form-btn">
