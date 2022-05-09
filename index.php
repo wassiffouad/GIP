@@ -148,7 +148,7 @@ if (!isset($_SESSION["gebruiker"])) {
                                 </ul>-->
                             </li>
 
-                            <li><a href='contact.html'>Contact</a></li>
+                            <li><a href='chat.php'>Chat</a></li>
 
                             <li><a href='toevoegen.php'>Toevoegen</a></li>
 
