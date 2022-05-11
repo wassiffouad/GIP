@@ -1,12 +1,12 @@
 <?php
-include "connect.php";
+include "php/config.php";
 session_start();
 if (isset($_GET['page'])) {
     $_SESSION['page'] = $_GET['page'];
 }
 
 if ($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "GET") {
-    if (isset($_FILES['profielfoto']['name']) && $_FILES['profielfoto']['name'] != "") {
+    if (isset($_FILES['image']['name']) && $_FILES['profielfoto']['name'] != "") {
         $filename = $_FILES['profielfoto']['name'];
         $img_info = getimagesize($_FILES['profielfoto']['tmp_name']);
         $dst = "uploads/" . $filename;

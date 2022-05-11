@@ -1,7 +1,10 @@
 <?php
-include "connect.php";
+session_start();
+include_once "php/config.php";
+if(!isset($_SESSION['unique_id'])){
+    header("location: login.php");
+}
 ?>
-
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -89,14 +92,14 @@ include "connect.php";
                 <div class="row">
                     <?php
 
-                        $sql = "select * from tblgebruikers";
+                        $sql = "select * from users";
                         $resultaat = $mysqli->query($sql);
                         while ($row = $resultaat->fetch_assoc()){
                             print '
                             <div class="col-lg-6 col-md-6 col-sm-6" >
                             <div class="blog__item">
                                 <div class="blog__item__text">
-                                    <h5> nummer: ' . $row["volgnummer"]  . '<br> naam: ' . $row["voornaam"] . ' ' . $row["naam"] .'</h5>
+                                    <h5> nummer: ' . $row["user_id"]  . '<br> naam: ' . $row["fname"] . ' ' . $row["lname"] .'</h5>
                                     <h5> email: '. $row["email"]  . ' ' . '<br> admin: ' .$row["admin"] .' </h5>
                                   
                                 </div>

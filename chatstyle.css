@@ -72,6 +72,9 @@ form .name-details .field:first-child{
   padding: 0 10px;
   border: 1px solid #ccc;
 }
+.form form .image input{
+ font-size:17px;
+}
 .form form .button input{
   margin-right: 13px;
   height: 45px;
@@ -90,6 +93,10 @@ form .name-details .field:first-child{
   top: 70%;
   transform: translateY(-50%);
   cursor: pointer;
+}
+.form form .field i.active::before{
+  color: #333;
+  content: "\f070";
 }
 .form .link{
   text-align: center;

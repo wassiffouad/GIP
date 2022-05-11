@@ -1,74 +1,44 @@
-
-<?php
-include "connect.php";
-session_start();
-$page = $_SERVER['REQUEST_URI']
-
+<?php 
+  session_start();
+  include_once "php/config.php";
+  if(!isset($_SESSION['unique_id'])){
+    header("location: login.php");
+  }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"
-     <meta http-equiv="X-UA-Compatible" content="ie=edge ">
-    <title>Page Title</title>
-    <link rel="stylesheet" href="chatstyle.css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-
+<?php include_once "header.php"; ?>
 <body>
-    <div class="wrapper">
-      <section class="chat-area">
-        <header>
-          <a href="#" class="back-icon"><i class="fas fa-arrow-left"></i></a>
-            <?php
-            print '<img src="uploads/' . $_SESSION["gebruiker"]["Profielfoto"] . '" alt="">';
-            ?>
-            <div class="details">
-                <span>Wassif Fouad</span>
-                <p>Active now</p>
-            </div>
-
-        </header>
-        <div class="chat-box">
-          <div class="chat outgoing">
-            <div class="details">
-              <p>ewa strijders mijn naam is wassif</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <div class="details">
-              <p>ewa strijders mijn naam is wassif</p>
-            </div>
-          </div>
-          <div class="chat outgoing">
-            <div class="details">
-              <p>ewa strijders mijn naam is wassif</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <div class="details">
-              <p>ewa strijders mijn naam is wassif</p>
-            </div>
-          </div>
-          <div class="chat outgoing">
-            <div class="details">
-              <p>ewa strijders mijn naam is wassif</p>
-            </div>
-          </div>
-          <div class="chat incoming">
-            <div class="details">
-              <p>ewa strijders mijn naam is wassif</p>
-            </div>
-          </div>
+  <div class="wrapper">
+    <section class="chat-area">
+      <header>
+        <?php
+        include_once "php/config.php";
+          $user_id = mysqli_real_escape_string($conn, $_GET['user_id']);
+          $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$user_id}");
+          if(mysqli_num_rows($sql) > 0){
+            $row = mysqli_fetch_assoc($sql);
+          }else{
+            header("location: users.php");
+          }
+        ?>
+        <a href="users.php" class="back-icon"><i class="fas fa-arrow-left"></i></a>
+        <img src="php/images/<?php echo $row['img']; ?>" alt="">
+        <div class="details">
+          <span><?php echo $row['fname']. " " . $row['lname'] ?></span>
+          <p><?php echo $row['status']; ?></p>
         </div>
-        <form class="typing-area" action="index.html" method="post">
-          <input type="text" placeholder="Type a message here..">
-          <button type="button"><i class="fab fa-telegram"></i>S</button>
+      </header>
+      <div class="chat-box">
 
-        </form>
-      </section>
+      </div>
+      <form action="#" class="typing-area">
+        <input type="text" class="incoming_id" name="incoming_id" value="<?php echo $user_id; ?>" hidden>
+        <input type="text" name="message" class="input-field" placeholder="Type a message here..." autocomplete="off">
+        <button><i class="fab fa-telegram-plane"></i></button>
+      </form>
+    </section>
+  </div>
 
+  <script src="js/chat.js"></script>
 
 </body>
 </html>

@@ -1,48 +1,50 @@
-<?php
+<?php 
+  session_start();
+  if(isset($_SESSION['unique_id'])){
+    header("location: users.php");
+  }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0"
-    <meta http-equiv="X-UA-Compatible" content="ie=edge ">
-    <title>Page Title</title>
-    <link rel="stylesheet" href="chatstyle.css" >
-    <link rel="stylesheet" href="https://cdnjs.cloudfare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
+<?php include_once "header.php"; ?>
 <body>
-<div class="wrapper">
-    <section class="form login">
-        <header>Sign up</header>
-        <form action="#">
-        <!--<div class="error-txt">This is an error message!</div>-->
+  <div class="wrapper">
+    <section class="form signup">
+      <header>Sign up</header>
+      <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
+        <div class="error-text"></div>
         <div class="name-details">
           <div class="field input">
-            <label>First name</label>
-            <input type="text" placeholder="First name">
+            <label>First Name</label>
+            <input type="text" name="fname" placeholder="First name" required>
           </div>
           <div class="field input">
-            <label>Last name</label>
-            <input type="text" placeholder="Last name">
+            <label>Last Name</label>
+            <input type="text" name="lname" placeholder="Last name" required>
           </div>
-          </div>
-          <div class="field input">
-            <label>Email adress</label>
-            <input type="text" placeholder="Enter your email">
-          </div>
-          <div class="field input">
-            <label>Password</label>
-            <input type="text" placeholder="Enter your password">
-            <i class="fas fa-eye"></i>
-          </div>
-          <div class="field button">
-            <input type="submit" value="Ga verder">
-          </div>
+        </div>
+        <div class="field input">
+          <label>Email Address</label>
+          <input type="text" name="email" placeholder="Enter your email" required>
+        </div>
+        <div class="field input">
+          <label>Password</label>
+          <input type="password" name="password" placeholder="Enter new password" required>
+          <i class="fas fa-eye"></i>
+        </div>
+        <div class="field image">
+          <label>Select Image</label>
+          <input type="file" name="image" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+        </div>
+        <div class="field button">
+          <input type="submit" name="submit" value="Continue to Chat">
+        </div>
       </form>
-      <div class="link">Not yet signed up? <a href="#">Signup now</a></div>
+      <div class="link">Already signed up? <a href="login.php">Login now</a></div>
     </section>
+  </div>
 
+  <script src="js/pass-show-hide.js"></script>
+  <script src="js/signup.js"></script>
 
 </body>
 </html>
