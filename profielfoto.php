@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "GET")
         move_uploaded_file(imagejpeg($tmp, $dst), "uploads/" . $filename);
 
         if (file_exists("uploads/" . $filename)) {
-            $query = "update tblgebruikers set profielFoto = '$filename' where volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
+            $query = "update users set img = '$filename' where unique_id =" . $_SESSION['unique_id'];
             $mysqli->query($query);
             $page = $_SESSION['page'];
             $_SESSION['page'] = "";
@@ -59,7 +59,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" || $_SERVER['REQUEST_METHOD'] == "GET")
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content=""/>
     <meta name="keywords" content=""/>
-    <link rel="icon" href="images/fav.png" type="image/png" sizes="16x16">
+    <link rel="icon" href="fotos/fav.png" type="image/png" sizes="16x16">
     <link rel="stylesheet" href="css/main.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/color.css">

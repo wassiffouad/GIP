@@ -72,6 +72,13 @@ form .name-details .field:first-child{
   padding: 0 10px;
   border: 1px solid #ccc;
 }
+.form form .field input{
+  height: 60px;
+  width: 100%;
+  font-size: 16px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+}
 .form form .image input{
  font-size:17px;
 }

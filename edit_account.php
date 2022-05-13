@@ -2,22 +2,26 @@
 include "connect.php";
 session_start();
 $page = $_SERVER['REQUEST_URI'];
+include "php/config.php";
+
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if(mysqli_num_rows($sql) > 0){
+    $row = mysqli_fetch_assoc($sql);
+}
 
 if (isset($_POST["knop"])) {
     $voornaam = $_POST["voornaam"];
     $naam = $_POST["naam"];
     $email = $_POST["email"];
-    $telefoonnummer = $_POST["telefoonnummer"];
 
-    $sql = "UPDATE tblgebruikers
-        SET naam ='" . $naam . "', voornaam ='" . $voornaam . "',email ='" . $email . "', telefoonnummer ='" . $telefoonnummer . "'
+    $sql = "UPDATE users
+        SET lname ='" . $naam . "', fname ='" . $voornaam . "',email ='" . $email  . "'
         WHERE volgnummer =" . $_SESSION['gebruiker']['volgnummer'];
 
     $resultaat = $mysqli->query($sql);
-    $_SESSION["gebruiker"]["voornaam"] = $voornaam;
-    $_SESSION["gebruiker"]["naam"] = $naam;
-    $_SESSION["gebruiker"]["email"] = $email;
-    $_SESSION["gebruiker"]["telefoonnummer"] = $telefoonnummer;
+    $row["fname"] = $voornaam;
+    $row["lname"] = $naam;
+    $row["email"] = $email;
 
     header("location:account.php");
 }
@@ -108,15 +112,20 @@ if (isset($_POST["knop"])) {
 </section>
 <!-- Breadcrumb Section End -->
 
-
+<?php
+include "php/config.php";
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if(mysqli_num_rows($sql) > 0){
+    $row = mysqli_fetch_assoc($sql);
+}
+?>
 <div class="container emp-profile">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <?php
-                    print '<img src="uploads/' . $_SESSION["gebruiker"]["Profielfoto"] . '" alt="">';
-                    ?>                    <div class="file btn btn-lg btn-primary">
+                    <div class="file btn btn-lg btn-primary">
+                        <img style="height: 300px; width: 300px;" src="php/images/<?php echo $row['img']; ?>" alt="">
                         <?php
                         print'<a href="profielfoto.php?page=' . $page . '"> Profielfoto veranderen</a>'
                         ?>
@@ -127,31 +136,43 @@ if (isset($_POST["knop"])) {
                 <div class="profile-head">
 
                     <?php
-                    $sql = "SELECT naam AND voornaam FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                    $resultaat = $mysqli->query($sql);
-                    print "<h5>". $_SESSION["gebruiker"]["naam"] . " " . $_SESSION["gebruiker"]["voornaam"]. "</h5>";
+                    print "<h5>". $row["lname"] . " " . $row["fname"]. "</h5>";
                     ?>
 
                     <?php
-                    $sql = "SELECT admin FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                    $resultaat = $mysqli->query($sql);
-                    if ($_SESSION["gebruiker"]["admin"] === '1'){
+
+                    if ($row["admin"] === '1'){
                         print "<h6>Admin</h6>";
                     } else {
                         print "<p> Verkoper of koper </p>";
                     }
                     ?>
                     </h6>
-                    <?php
-                    $sql = "SELECT status FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                    $resultaat = $mysqli->query($sql);
-                    if ($_SESSION["gebruiker"]["status"] == 1){
-                        print "<p class='proile-rating'>STATUS: <span>online</span></p>";
-                    } else if ($_SESSION["gebruiker"]["status"] == 0){
-                        print "<p class='proile-rating'>STATUS: <span>offline</span></p>";
 
+                    <ul class="nav nav-tabs" id="myTab" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
+                        </li>
+                        <!--<li class="nav-item">
+                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                        </li>-->
+                    </ul>
+                </div>
+            </div>
+
+            <?php
+            print "<p>". $row["lname"] . " " . $row["fname"]. "</p>";
+            ?>
+
+                    <?php
+
+                    if ($row["admin"] === '1'){
+                        print "<h6>Admin</h6>";
+                    } else {
+                        print "<p> Verkoper of koper </p>";
                     }
                     ?>
+                    </h6>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -198,15 +219,6 @@ if (isset($_POST["knop"])) {
                             </div>
                             <div class="col-md-6">
                                 <input type="text" name="email" placeholder="mail@mail.com">
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <input type="text" name="telefoonnummer" placeholder="+324 12 34 56 78">
-
                             </div>
                         </div>
                         <div class="row">

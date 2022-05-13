@@ -87,15 +87,20 @@ $page = $_SERVER['REQUEST_URI']
 </section>
 <!-- Breadcrumb Section End -->
 
-
+<?php
+include "php/config.php";
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if(mysqli_num_rows($sql) > 0){
+    $row = mysqli_fetch_assoc($sql);
+}
+?>
 <div class="container emp-profile">
     <form method="post">
         <div class="row">
             <div class="col-md-4">
                 <div class="profile-img">
-                    <?php
-                    print '<img src="uploads/' . $_SESSION["gebruiker"]["Profielfoto"] . '" alt="">';
-                    ?>                    <div class="file btn btn-lg btn-primary">
+                   <div class="file btn btn-lg btn-primary">
+                       <img style="height: 300px; width: 300px;" src="php/images/<?php echo $row['img']; ?>" alt="">
                         <?php
                         print'<a href="profielfoto.php?page=' . $page . '"> Profielfoto veranderen</a>'
                         ?>
@@ -106,31 +111,19 @@ $page = $_SERVER['REQUEST_URI']
                 <div class="profile-head">
 
                         <?php
-                        $sql = "SELECT naam AND voornaam FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                        $resultaat = $mysqli->query($sql);
-                        print "<h5>". $_SESSION["gebruiker"]["naam"] . " " . $_SESSION["gebruiker"]["voornaam"]. "</h5>";
+                        print "<h5>". $row["lname"] . " " . $row["fname"]. "</h5>";
                         ?>
 
                         <?php
-                        $sql = "SELECT admin FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                        $resultaat = $mysqli->query($sql);
-                        if ($_SESSION["gebruiker"]["admin"] === '1'){
+
+                        if ($row["admin"] === '1'){
                             print "<h6>Admin</h6>";
                         } else {
                             print "<p> Verkoper of koper </p>";
                         }
                         ?>
                     </h6>
-                    <?php
-                    $sql = "SELECT status FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                    $resultaat = $mysqli->query($sql);
-                    if ($_SESSION["gebruiker"]["status"] == 1){
-                        print "<p class='proile-rating'>STATUS: <span>online</span></p>";
-                    } else if ($_SESSION["gebruiker"]["status"] == 0){
-                        print "<p class='proile-rating'>STATUS: <span>offline</span></p>";
 
-                    }
-                    ?>
                     <ul class="nav nav-tabs" id="myTab" role="tablist">
                         <li class="nav-item">
                             <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
@@ -170,9 +163,7 @@ $page = $_SERVER['REQUEST_URI']
                             </div>
                             <div class="col-md-6">
                                 <?php
-                                $sql = "SELECT naam AND voornaam FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                                $resultaat = $mysqli->query($sql);
-                                print "<p>". $_SESSION["gebruiker"]["naam"] . " " . $_SESSION["gebruiker"]["voornaam"]. "</p>";
+                                print "<p>". $row["lname"] . " " . $row["fname"]. "</p>";
                                 ?>
                             </div>
                         </div>
@@ -182,21 +173,8 @@ $page = $_SERVER['REQUEST_URI']
                             </div>
                             <div class="col-md-6">
                                 <?php
-                                $sql = "SELECT email FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                                $resultaat = $mysqli->query($sql);
-                                print "<p>". $_SESSION["gebruiker"]["email"] ."</p>";
-                                ?>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Phone</label>
-                            </div>
-                            <div class="col-md-6">
-                                <?php
-                                $sql = "SELECT telefoonnummer FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                                $resultaat = $mysqli->query($sql);
-                                print "<p>". $_SESSION["gebruiker"]["telefoonnummer"] ."</p>";
+
+                                print "<p>". $row["email"] ."</p>";
                                 ?>
                             </div>
                         </div>
@@ -206,9 +184,7 @@ $page = $_SERVER['REQUEST_URI']
                             </div>
                             <div class="col-md-6">
                                 <?php
-                                $sql = "SELECT admin FROM tblgebruikers WHERE volgnummer =" . $_SESSION["gebruiker"]["volgnummer"];
-                                $resultaat = $mysqli->query($sql);
-                                if ($_SESSION["gebruiker"]["admin"] === '1'){
+                                if ($row["admin"] === '1'){
                                     print "<p> <a href='blog.php'>ga naar admin </a></p>";
                                 } else {
                                     print "";

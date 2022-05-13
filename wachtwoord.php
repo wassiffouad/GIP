@@ -15,7 +15,7 @@ if (isset($_POST["knop"])){
         print "wachtwoorden zijn niet gelijk!";
 
     } else if ( $nieuw == $nieuw1 ){
-        $sql = "UPDATE tblgebruikers SET wachtwoord = '".$nieuw ." ' WHERE wachtwoord = '".$oud ." ' AND volgnummer =". $_SESSION["gebruiker"]["volgnummer"];
+        $sql = "UPDATE users SET password = '".$nieuw ." ' WHERE volgnummer =". $_SESSION["gebruiker"]["volgnummer"];
         print $sql;
         $resultaat = $mysqli->query($sql);
         print 'Wachtwoord is succesvol aangepast!';

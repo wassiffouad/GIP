@@ -4,6 +4,7 @@ include_once "php/config.php";
 if(!isset($_SESSION['unique_id'])){
     header("location: login.php");
 }
+$id = $_SESSION['user_id'];
 ?>
 <!DOCTYPE html>
 <html lang="zxx">
@@ -18,6 +19,7 @@ if(!isset($_SESSION['unique_id'])){
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
     <!-- Css Styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
     <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
@@ -29,66 +31,16 @@ if(!isset($_SESSION['unique_id'])){
 </head>
 
 <body>
-    <!-- Humberger Begin -->
-    <div class="humberger__menu__overlay"></div>
-    <div class="humberger__menu__wrapper">
-        <div class="humberger__menu__logo">
-            <a href="#"><img src="img/logo.png" alt=""></a>
-        </div>
-        <div class="humberger__menu__cart">
-            <ul>
-                <li><a href="#"><i class="fa fa-heart"></i> <span>1</span></a></li>
-                <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-            </ul>
-            <div class="header__cart__price">item: <span>$150.00</span></div>
-        </div>
-        <div class="humberger__menu__widget">
-            <div class="header__top__right__language">
-                <img src="img/language.png" alt="">
-                <div>English</div>
-                <span class="arrow_carrot-down"></span>
-                <ul>
-                    <li><a href="#">Spanish</a></li>
-                    <li><a href="#">English</a></li>
-                </ul>
-            </div>
-            <div class="header__top__right__auth">
-                <a href="#"><i class="fa fa-user"></i> Login</a>
-            </div>
-        </div>
-        <nav class="humberger__menu__nav mobile-menu">
-            <ul>
-                <li><a href="./shop-grid.html">Shop</a></li>
-                <li><a href="#">Pages</a>
-                    <ul class="header__menu__dropdown">
-                        <li><a href="./shop-details.html">Shop Details</a></li>
-                        <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                        <li><a href="./checkout.html">Check Out</a></li>
-                        <li><a href="./blog-details.html">Blog Details</a></li>
-                    </ul>
-                </li>
-                <li><a href="blog.php">Blog</a></li>
-                <li><a href="./contact.html">Contact</a></li>
-            </ul>
-        </nav>
-        <div id="mobile-menu-wrap"></div>
-        <div class="header__top__right__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
-            <a href="#"><i class="fa fa-twitter"></i></a>
-            <a href="#"><i class="fa fa-linkedin"></i></a>
-            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-        </div>
-        <div class="humberger__menu__contact">
-            <ul>
-                <li><i class="fa fa-envelope"></i> hello@colorlib.com</li>
-                <li>Free Shipping for all Order of $99</li>
-            </ul>
-        </div>
-    </div>
-    <!-- Humberger End -->
+
 
     <!-- Header Section Begin -->
     <header class="header">
+        <?php
+        $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+        if(mysqli_num_rows($sql) > 0){
+            $row = mysqli_fetch_assoc($sql);
+        }
+        ?>
         <div class="header__top">
             <div class="container">
                 <div class="row">
@@ -108,12 +60,12 @@ if(!isset($_SESSION['unique_id'])){
                                 <div>English</div>
                                 <span class="arrow_carrot-down"></span>
                                 <ul>
-                                    <li><a href="#">Spanis</a></li>
+
                                     <li><a href="#">English</a></li>
                                 </ul>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="Login/logout.php"><i class="fa fa-user"></i> Logout | </a>
+                                <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout |</a>
                             </div>
                             <div class="header__top__right__auth">
                                 <a href="account.php">Account</a>
@@ -127,15 +79,15 @@ if(!isset($_SESSION['unique_id'])){
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
-                    <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                    <div class="header__logo" ">
+                        <a href="index1.php"><img src="img/wasco.png" alt=""style="height: 80px;"></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
                     <nav class="header__menu">
                         <ul>
-                            <li><a href="./shop-grid.html">Shop</a></li>
-                            <!--<li><a href="#">Pages</a>
+                            <!--<li><a href="./shop-grid.html">Shop</a></li>
+                            <li><a href="#">Pages</a>
                                 <ul class="header__menu__dropdown">
                                     <li><a href="./shop-details.html">Shop Details</a></li>
                                     <li><a href="./shoping-cart.html">Shoping Cart</a></li>
@@ -143,6 +95,7 @@ if(!isset($_SESSION['unique_id'])){
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>-->
                             </li>
+                            <li><a href='abbonement.php'>Abbonementen</a></li>
 
                             <li><a href='chat.php'>Chat</a></li>
 
@@ -155,12 +108,12 @@ if(!isset($_SESSION['unique_id'])){
                     </nav>
                 </div>
                 <div class="col-lg-3">
-                    <div class="header__cart">
+                    <!--<div class="header__cart">
                         <ul>
                             <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
                         </ul>
                         <div class="header__cart__price">item: <span>$150.00</span></div>
-                    </div>
+                    </div>-->
                 </div>
             </div>
             <div class="humberger__open">
@@ -171,7 +124,7 @@ if(!isset($_SESSION['unique_id'])){
     <!-- Header Section End -->
 
     <!-- Hero Section Begin -->
-    <section class="hero">
+    <!--<section class="hero">
         <div class="container">
             <div class="row">
                 <div class="col-lg-3">
@@ -228,10 +181,10 @@ if(!isset($_SESSION['unique_id'])){
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
     <!-- Hero Section End -->
 
-    <!-- Categories Section Begin -->
+    <!-- Categories Section Begin
     <section class="categories">
         <div class="container">
             <div class="row">
@@ -264,18 +217,29 @@ if(!isset($_SESSION['unique_id'])){
                 </div>
             </div>
         </div>
-    </section>
+    </section>-->
     <!-- Categories Section End -->
 
     <!-- Featured Section Begin -->
     <section class="featured spad">
+        <?php
+        include "connect.php";
+        $resultaat = $mysqli->query("SELECT * FROM tblposts");
+
+        //$sql2 = mysqli_query($conn,"SELECT fname, lname, id_user, datum FROM users JOIN tblposts ON users.user_id = tblposts.id_user");
+        //if(mysqli_num_rows($sql2) > 0){
+          //  $row2 = mysqli_fetch_assoc($sql2);
+       // }
+        print '
+
+        
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Featured Product</h2>
+                        <h2>Producten</h2>
                     </div>
-                    <div class="featured__controls">
+                    <!--<div class="featured__controls">
                         <ul>
                             <li class="active" data-filter="*">All</li>
                             <li data-filter=".oranges">Oranges</li>
@@ -283,155 +247,49 @@ if(!isset($_SESSION['unique_id'])){
                             <li data-filter=".vegetables">Vegetables</li>
                             <li data-filter=".fastfood">Fastfood</li>
                         </ul>
-                    </div>
+                    </div>-->
                 </div>
-            </div>
-            <div class="row featured__filter">
+            </div>';
+
+            while ($row3 = $resultaat->fetch_assoc()) {
+                $sql4 = "SELECT * FROM users WHERE user_id = " . $row3["id_user"];
+                $persoon = $mysqli->query($sql4) -> fetch_assoc();
+
+                print '
+            <div class="row featured__filter" style="display: inline-block;">
                 <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
                     <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-1.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
+                        <div class="card" style="width: 18rem; margin-left: 50px">
+                            <div class="featured__item__pic set-bg card-img-top" style="height: 200px;" data-setbg="images/posts/' . $row3["foto"] .  '" )>
+                            <div class="card-body">
+                                <ul class="featured__item__pic__hover">
+                                    <!--<li><a href="#"><i class="fa fa-heart"></i></a></li>-->
+                                    <li><a href="chat.php?user_id='. $persoon["unique_id"] . '"><i class="fab fa-telegram-plane"></i></a></li>
+                                    <!--<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>-->
+                                </ul>
+                            </div>
                         </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-2.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix vegetables fresh-meat">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-3.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood oranges">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-4.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-5.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fastfood">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-6.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fresh-meat vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-7.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6 mix fastfood vegetables">
-                    <div class="featured__item">
-                        <div class="featured__item__pic set-bg" data-setbg="img/featured/feature-8.jpg">
-                            <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
-                                <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
-                            </ul>
-                        </div>
-                        <div class="featured__item__text">
-                            <h6><a href="#">Crab Pool Security</a></h6>
-                            <h5>$30.00</h5>
+                        <div class="card-body">
+                            <h5 class="card-title"><strong> ' . $row3["soort"] . '</strong></h5>
+                            <p class="card-text">' . $row3["beschrijvingPost"] . '</p>
+                            <div class="featured__item__text">
+                                <h5>€ ' . $row3["prijs"] . '</h5>
+                            </div>
+                            <p class="card-text">Posted by: ' . $persoon["lname"] . " " . $persoon["fname"] . '<br>
+                                                 On: ' . $row3["datum"] . '<br>
+                                                 From:' .$row3["postcode"] . " " . $row3["stad"] . '</p>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </div>';
+}
+        ?>
     </section>
     <!-- Featured Section End -->
 
-    <!-- Banner Begin -->
-    <div class="banner">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="img/banner/banner-1.jpg" alt="">
-                    </div>
-                </div>
-                <div class="col-lg-6 col-md-6 col-sm-6">
-                    <div class="banner__pic">
-                        <img src="img/banner/banner-2.jpg" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    <!-- Banner End -->
 
-    <!-- Latest Product Section Begin -->
+    <!-- Latest Product Section Begin
     <section class="latest-product spad">
         <div class="container">
             <div class="row">
@@ -632,10 +490,10 @@ if(!isset($_SESSION['unique_id'])){
                 </div>
             </div>
         </div>
-    </section>
-    <!-- Latest Product Section End -->
+    </section>-->
+    <!-- Latest Product Section End
 
-    <!-- Blog Section Begin -->
+     Blog Section Begin
     <section class="from-blog spad">
         <div class="container">
             <div class="row">
@@ -693,10 +551,11 @@ if(!isset($_SESSION['unique_id'])){
                 </div>
             </div>
         </div>
-    </section>
+    </section>   -->
+
     <!-- Blog Section End -->
 
-    <!-- Footer Section Begin -->
+    <!-- Footer Section Begin
     <footer class="footer spad">
         <div class="container">
             <div class="row">
@@ -753,16 +612,16 @@ if(!isset($_SESSION['unique_id'])){
             <div class="row">
                 <div class="col-lg-12">
                     <div class="footer__copyright">
-                        <div class="footer__copyright__text"><p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        <div class="footer__copyright__text"><p>Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0.
   Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
-  <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p></div>
+  Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. /p></div>
                         <div class="footer__copyright__payment"><img src="img/payment-item.png" alt=""></div>
                     </div>
                 </div>
             </div>
         </div>
     </footer>
-    <!-- Footer Section End -->
+     Footer Section End -->
 
     <!-- Js Plugins -->
     <script src="js/jquery-3.3.1.min.js"></script>
