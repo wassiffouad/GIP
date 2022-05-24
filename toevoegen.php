@@ -76,33 +76,33 @@ include "php/config.php";
 <body>
 <div class="wrapper">
     <section class="form signup">
-        <header>Item toevoegen |        <a href="index1.php" class="logout" style="color: black">Home</a>
+        <header>Add Item |        <a href="index1.php" class="logout" style="color: black">Home</a>
         </header>
         <form action="toevoegen.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="error-text"></div>
             <div class="field input">
-                    <label>Naam kledingstuk</label>
+                    <label>Name</label>
                     <input type="text" name="naam" placeholder="" required>
             </div>
                 <div class="field input">
-                <label>Soort</label>
+                <label>Type</label>
                 <input type="text" name="soort" placeholder="T-shirt, sneaker, broek,..." required>
                 </div>
             <div class="field input">
-                <label>Beschrijving</label>
+                <label>Description</label>
                 <input type="text" name="beschrijving" placeholder="" required>
             </div>
             <div class="field input">
-                <label>Prijs</label>
+                <label>Price</label>
                 <input type="text" name="prijs" placeholder="" required>
             </div>
             <div class="name-details">
             <div class="field input">
-                <label>Stad</label>
+                <label>City</label>
                 <input type="text" name="stad" placeholder="" required>
             </div>
             <div class="field input">
-                <label>Postcode</label>
+                <label>ZIP code</label>
                 <input type="text" name="postcode" placeholder="" required>
             </div>
             </div>

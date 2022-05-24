@@ -95,15 +95,15 @@ $id = $_SESSION['user_id'];
                                     <li><a href="./blog-details.html">Blog Details</a></li>
                                 </ul>-->
                             </li>
-                            <li><a href='abbonement.php'>Abbonementen</a></li>
+                            <li><a href='abbonement.php'>Subscriptions</a></li>
 
                             <li><a href='chat.php'>Chat</a></li>
 
-                            <li><a href='toevoegen.php'>Toevoegen</a></li>
+                            <li><a href='toevoegen.php'>Post Item</a></li>
 
                             <!--<li><a href="./contact.html">Contact</a></li>-->
 
-                            <li><a href="wachtwoord.php">Wachtwoord</a></li>
+                            <li><a href="wachtwoord.php">Password</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -237,7 +237,7 @@ $id = $_SESSION['user_id'];
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <h2>Producten</h2>
+                        <h2>Products</h2>
                     </div>
                     <!--<div class="featured__controls">
                         <ul>
@@ -252,6 +252,7 @@ $id = $_SESSION['user_id'];
             </div>';
 
             while ($row3 = $resultaat->fetch_assoc()) {
+
                 $sql4 = "SELECT * FROM users WHERE user_id = " . $row3["id_user"];
                 $persoon = $mysqli->query($sql4) -> fetch_assoc();
 

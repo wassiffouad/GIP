@@ -72,7 +72,7 @@ $id = $_SESSION['user_id'];
                                 <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout |</a>
                             </div>
                             <div class="header__top__right__auth">
-                                <a href="account.php">Account</a>
+                                <a href="accountoud.php">Account</a>
                             </div>
 
                         </div>
@@ -103,11 +103,11 @@ $id = $_SESSION['user_id'];
 
                             <li><a href='chat.php'>Chat</a></li>
 
-                            <li><a href='toevoegen.php'>Toevoegen</a></li>
+                            <li><a href='toevoegen.php'>Post Item</a></li>
 
                             <!--<li><a href="./contact.html">Contact</a></li>-->
 
-                            <li><a href="wachtwoord.php">Wachtwoord</a></li>
+                            <li><a href="wachtwoord.php">Password</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -128,28 +128,29 @@ $id = $_SESSION['user_id'];
 
     <div class="priceing-table w3l">
         <div class="wrap">
-            <h1>Verschillende tarieven</h1>
+            <h1>Different Fees</h1>
             <div class="priceing-table-main">
                 <div class="price-grid">
                     <div class="price-block agile">
                         <div class="price-gd-top pric-clr1">
                             <h4>Basic</h4>
                             <h3>€5</h3>
-                            <h5>per maand</h5>
+                            <h5>a month</h5>
                         </div>
                         <div class="price-gd-bottom">
                             <div class="price-list">
                                 <ul>
-                                    <li>Volledige toegang</li>
-                                    <li>5 gratis posts per maand</li>
+                                    <li>Full acces</li>
+                                    <li>5 free posts a month</li>
                                     <li>24/7 contact</li>
-                                    <li>Gratis Updates</li>
-                                    <li>*****************</li>
+                                    <li>Free Updates</li>
+                                    <li>14 days free trial</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="price-selet pric-sclr1">
-                            <a class="popup-with-zoom-anim" data-plan="basic" data-price="5.00" href="checkout.php">Neem dit abbonement</a>
+                            <a id="bnp-628d26e5c608690004ed7084"class="bnp-button"href="https://buynowplus.com/checkout/628d26e5c608690004ed7084">Take this</a>
+                            <!--<a class="popup-with-zoom-anim" data-plan="basic" data-price="5.00" href="checkout.php">Neem dit abbonement</a>-->
                         </div>
                     </div>
                 </div>
@@ -158,21 +159,22 @@ $id = $_SESSION['user_id'];
                         <div class="price-gd-top pric-clr2">
                             <h4>Standard</h4>
                             <h3>€10</h3>
-                            <h5>per maand</h5>
+                            <h5>a month</h5>
                         </div>
                         <div class="price-gd-bottom">
                             <div class="price-list">
                                 <ul>
-                                    <li>Volledige toegang</li>
-                                    <li>10 gratis posts per maand</li>
+                                    <li>Full acces</li>
+                                    <li>10 free posts a month</li>
                                     <li>24/7 contact</li>
-                                    <li>Gratis Updates</li>
-                                    <li>*****************</li>
+                                    <li>Free Updates</li>
+                                    <li>14 days free trial</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="price-selet pric-sclr2">
-                            <a class="popup-with-zoom-anim" data-plan="standart" data-price="10.00" href="checkout.php">Neem dit abbonement</a>
+                            <a id="bnp-628d2870b0b4420004d49c31"class="bnp-button"href="https://buynowplus.com/checkout/628d2870b0b4420004d49c31">Take this</a>
+
                         </div>
                     </div>
                 </div>
@@ -181,21 +183,21 @@ $id = $_SESSION['user_id'];
                         <div class="price-gd-top pric-clr3">
                             <h4>Premium</h4>
                             <h3>€20</h3>
-                            <h5>per maand</h5>
+                            <h5>a month</h5>
                         </div>
                         <div class="price-gd-bottom">
                             <div class="price-list">
                                 <ul>
-                                    <li>Volledige toegang</li>
-                                    <li>20 gratis posts per maand</li>
+                                    <li>Full acces</li>
+                                    <li>20 free posts a month</li>
                                     <li>24/7 contact</li>
-                                    <li>Gratis Updates</li>
-                                    <li>*****************</li>
+                                    <li>Free Updates</li>
+                                    <li>14 days free trial</li>
                                 </ul>
                             </div>
                         </div>
                         <div class="price-selet pric-sclr3">
-                            <a class="popup-with-zoom-anim" data-plan="premium" data-price="20.00" href="checkout.php">Neem dit abbonement</a>
+                            <a id="bnp-628d2909c608690004ed7085"class="bnp-button"href="https://buynowplus.com/checkout/628d2909c608690004ed7085">Take this</a>
                         </div>
                     </div>
                 </div>

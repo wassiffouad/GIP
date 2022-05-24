@@ -16,14 +16,14 @@ if (isset($_POST["knop"])) {
 
     $sql = "UPDATE users
         SET lname ='" . $naam . "', fname ='" . $voornaam . "',email ='" . $email  . "'
-        WHERE volgnummer =" . $_SESSION['gebruiker']['volgnummer'];
+        WHERE volgnummer =" . $_SESSION['unique_id'];
 
     $resultaat = $mysqli->query($sql);
     $row["fname"] = $voornaam;
     $row["lname"] = $naam;
     $row["email"] = $email;
-
     header("location:account.php");
+
 }
 
 

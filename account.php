@@ -1,7 +1,12 @@
 <?php
 include "connect.php";
+include "php/config.php";
 session_start();
-$page = $_SERVER['REQUEST_URI']
+$page = $_SERVER['REQUEST_URI'];
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if(mysqli_num_rows($sql) > 0){
+    $row = mysqli_fetch_assoc($sql);
+}
 
 ?>
 
@@ -58,7 +63,7 @@ $page = $_SERVER['REQUEST_URI']
                             <a href="#"><i class="fa fa-pinterest-p"></i></a>
                         </div>
                         <div class="header__top__right__auth">
-                            <a href="Login/logout.php"><i class="fa fa-user"></i> Logout</a>
+                            <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout</a>
                         </div>
                     </div>
                 </div>
@@ -94,110 +99,118 @@ if(mysqli_num_rows($sql) > 0){
     $row = mysqli_fetch_assoc($sql);
 }
 ?>
-<div class="container emp-profile">
-    <form method="post">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-img">
-                   <div class="file btn btn-lg btn-primary">
-                       <img style="height: 300px; width: 300px;" src="php/images/<?php echo $row['img']; ?>" alt="">
-                        <?php
-                        print'<a href="profielfoto.php?page=' . $page . '"> Profielfoto veranderen</a>'
-                        ?>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-6">
-                <div class="profile-head">
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
 
-                        <?php
-                        print "<h5>". $row["lname"] . " " . $row["fname"]. "</h5>";
-                        ?>
 
-                        <?php
 
-                        if ($row["admin"] === '1'){
-                            print "<h6>Admin</h6>";
-                        } else {
-                            print "<p> Verkoper of koper </p>";
-                        }
-                        ?>
-                    </h6>
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 ">
 
-                    <ul class="nav nav-tabs" id="myTab" role="tablist">
-                        <li class="nav-item">
-                            <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">About</a>
-                        </li>
-                        <!--<li class="nav-item">
-                            <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
-                        </li>-->
-                    </ul>
-                </div>
-            </div>
+            <div class="list-group ">
+                <a href="account.php" class="list-group-item list-group-item-action active">Info</a>
+                <?php
+                if ($row["admin"] === '1'){
+                    print ' <a href="gebruikers.php" class="list-group-item list-group-item-action">User Management</a>';
+                }
+                ?>
+                <a href="wachtwoord.php" class="list-group-item list-group-item-action">Change Password</a>
+                <a href="toevoegen.php" class="list-group-item list-group-item-action">Post Item</a>
+                <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
+                <a href="#" class="list-group-item list-group-item-action">****</a>
+                <a href="#" class="list-group-item list-group-item-action">****</a>
+                <a href="#" class="list-group-item list-group-item-action">****</a>
+                <a href="#" class="list-group-item list-group-item-action">****</a>
+                <a href="#" class="list-group-item list-group-item-action">****</a>
+                <a href="#" class="list-group-item list-group-item-action">****</a>
+                <a href="#" class="list-group-item list-group-item-action">****</a>
 
-            <div class="col-md-2">
-                <a href="edit_account.php">Edit profiel</a>
+
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4">
-                <div class="profile-work">
-                    <p>HANDIGE LINKS</p>
-                    <a href="wachtwoord.php">Wachtwoord aanpassen</a><br/>
-                    <a href="toevoegen.php">Items toevoegen</a><br/>
-                    <a href="">Link</a>
-                    <p>Titel</p>
-                    <a href="">Link</a><br/>
-                    <a href="">Link</a><br/>
-                    <a href="">Link</a><br/>
-                    <a href="">Link</a><br/>
-                    <a href="">Link</a><br/>
-                </div>
-            </div>
-            <div class="col-md-8">
-                <div class="tab-content profile-tab" id="myTabContent">
-                    <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Name</label>
-                            </div>
-                            <div class="col-md-6">
-                                <?php
-                                print "<p>". $row["lname"] . " " . $row["fname"]. "</p>";
-                                ?>
-                            </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Your Profile</h4>
+                            <hr>
                         </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Email</label>
-                            </div>
-                            <div class="col-md-6">
-                                <?php
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
 
-                                print "<p>". $row["email"] ."</p>";
-                                ?>
+                                <div class="form-group row">
+                                        <label for="profile picture" class="col-4 col-form-label">Profile picture</label>
+                                        <div class="col-8">
+                                            <img style="height: 300px; width: 300px;" src="php/images/<?php echo $row['img']; ?>" alt=""><br>
+                                            <?php
+                                            print'
+                                            <a   href="profielfoto.php?page=' . $page . '" role="button">Change profile picture</a>'
+                                            ?>
+                                        </div>
+
+
+                                </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-4 col-form-label">First Name</label>
+                                    <div class="col-8">
+                                        <?php
+                                        print "<p>" . $row["fname"]. "</p>";
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="lastname" class="col-4 col-form-label">Last Name</label>
+                                    <div class="col-8">
+                                        <?php
+                                        print "<p>" . $row["lname"]. "</p>";
+                                        ?>
+                                    </div>
+                                </div>
+                            <div class="form-group row">
+                                <label for="email" class="col-4 col-form-label">Email</label>
+                                <div class="col-8">
+                                    <?php
+                                    print "<p>" . $row["email"]. "</p>";
+                                    ?>
+                                </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-md-6">
-                                <label>Admin</label>
-                            </div>
-                            <div class="col-md-6">
-                                <?php
-                                if ($row["admin"] === '1'){
-                                    print "<p> <a href='blog.php'>ga naar admin </a></p>";
-                                } else {
-                                    print "";
-                                }
-                                ?>
-                            </div>
+                                <div class="form-group row">
+                                    <label for="select" class="col-4 col-form-label">Type</label>
+                                    <div class="col-8">
+                                        <?php
+                                        if ($row["admin"] === '1'){
+                                            print '<select id="select" name="select" class="custom-select">
+                                                        <option value="admin">Admin</option>
+                                                    </select>';
+                                        } else{
+                                            print '<select id="select" name="select" class="custom-select">
+                                                        <option value="customer">Customer</option>
+                                                    </select>';
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-4 col-8">
+                                        <?php
+                                        if ($row["admin"] === '1'){
+                                            print '<p><a class="btn btn-primary" href="blog.php">Go to admin page</a></p>';
+                                        }
+                                        ?>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                     </div>
-                        </div>
-                    </div>
+
                 </div>
             </div>
         </div>
-    </form>
+    </div>
 </div>
 </body>

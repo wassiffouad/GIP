@@ -70,7 +70,7 @@ $id = $_SESSION['user_id'];
                             <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout |</a>
                         </div>
                         <div class="header__top__right__auth">
-                            <a href="account.php">Account</a>
+                            <a href="accountoud.php">Account</a>
                         </div>
 
                     </div>
