@@ -2,7 +2,7 @@
 session_start();
 include "connect.php";
 include "php/config.php";
-
+$counter = 0;
 
 
     if (isset($_POST["knopje"])) {
@@ -32,7 +32,7 @@ include "php/config.php";
             if (move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $targetFilePath)) {
                 $sql = "INSERT INTO tblposts (volgnummer,foto,soort,beschrijvingPost,poster,datum,likes,zoekertje,prijs,stad,postcode, id_user) 
                         VALUES (null,'" . $fileName . "','" . $soort . "','" . $beschrijving . "','" . $poster . "','" . $date . "',0,false,'" . $prijs . "','" . $stad . "','" . $postcode . "','" . $_SESSION["user_id"] . "')";
-
+                $counter++;
                 if ($mysqli->query($sql)) {
                     header("Location: index1.php");
                 } else {

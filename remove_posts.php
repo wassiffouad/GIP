@@ -8,6 +8,10 @@ $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['un
 if(mysqli_num_rows($sql) > 0){
     $row = mysqli_fetch_assoc($sql);
 }
+$sql2 = mysqli_query($conn, "SELECT * FROM tblposts");
+if(mysqli_num_rows($sql2) > 0){
+    $row2 = mysqli_fetch_assoc($sql2);
+}
 
 ?>
 
@@ -115,13 +119,13 @@ if(mysqli_num_rows($sql) > 0){
                 <a href="account.php" class="list-group-item list-group-item-action ">Info</a>
                 <?php
                 if ($row["admin"] === '1'){
-                    print ' <a href="gebruikers.php" class="list-group-item list-group-item-action active">User Management</a>';
+                    print ' <a href="gebruikers.php" class="list-group-item list-group-item-action ">User Management</a>';
                 }
                 ?>
                 <a href="wachtwoord.php" class="list-group-item list-group-item-action">Change Password</a>
                 <a href="toevoegen.php" class="list-group-item list-group-item-action">Post Item</a>
                 <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
-                <a href="#" class="list-group-item list-group-item-action">****</a>
+                <a href="#" class="list-group-item list-group-item-action active">Remove Posts</a>
                 <a href="#" class="list-group-item list-group-item-action">****</a>
                 <a href="#" class="list-group-item list-group-item-action">****</a>
                 <a href="#" class="list-group-item list-group-item-action">****</a>
@@ -144,32 +148,24 @@ if(mysqli_num_rows($sql) > 0){
                     <div class="row">
                         <div class="col-md-12">
                             <?php
-        include "connect.php";
-                            $sql = "select * from users";
+                            include "connect.php";
+                            $sql = "SELECT * FROM users";
                             $resultaat = $mysqli->query($sql);
-                            while ($row = $resultaat->fetch_assoc()){
+
+                            $sql2 = "select * from tblposts WHERE poster =" . $_SESSION["unique_id"];
+                            $resultaat2 = $mysqli->query($sql2);
+                            while ($row = $resultaat2->fetch_assoc()){
                                 print '
                                         <div class="card" style="width: 18rem; display: inline-block;">
-                                          <img class="card-img-top" style="height: 286px; width: 286px;" src="php/images/'. $row["img"] . '"">
                                           <div class="card-body">
-                                            <h5 class="card-title">'. $row["lname"]. ' ' .$row["fname"]. '</h5>
-                                            <p class="card-text">'. $row["email"]. '</p>
+                                            <h5 class="card-title">'. $row["soort"]. '</h5>
+                                            <p class="card-text">'. $row["datum"]. '</p>
                                         ';
-                                            if ($row["admin"] === '1'){
-                                                print ' <p class="card-text">Admin</p>';
-                                            } else{
-                                                print '<p class="card-text">Customer</p>';
-                                            }
-                                
+
                                 print '
-                                            <a href="wis.php?tewissen='. $row["unique_id"] . '" class="btn btn-danger">Remove</a>
+                                            <a href="wiss.php?tewissen='. $row["volgnummer"] . '" class="btn btn-danger">Remove</a>
                                             ';
-                                            if ($row["admin"] === '1'){
-                                                print ' <a href="admin.php?teverwijderen='. $row["unique_id"] . '" class="btn btn-danger">Remove Admin</a>';
-                                            } else{
-                                                print '<a href="admin1.php?teverwijder='. $row["unique_id"] . '" class="btn btn-success">Make Admin</a>';
-                                            }
-                                            print '
+                                print '
                                             
                                           </div>
                                         </div>
@@ -177,14 +173,14 @@ if(mysqli_num_rows($sql) > 0){
                                            
                                         ';
                             }
-                        ?>
+                            ?>
+                        </div>
+
+
                     </div>
-
-
                 </div>
             </div>
         </div>
     </div>
-</div>
 </body>
 </html>

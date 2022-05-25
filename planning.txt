@@ -1,0 +1,18 @@
+To do:
+!! abbonementen
+subscription id in databank
+0: alleen zien(chat en post item weg)
+1: 5 posts kolom in tabelposts met counter startend vanaf 1
+2: 10 posts kolom in tabelposts met counter
+3: 20 posts kolom in tabelposts met counter
+
+if  subscription id === 1  && counter < 5
+
+else if subscription id === 2  && counter < 10
+
+else if subscription id === 3  && counter < 20
+
+
+Edit post
+profielfoto
+goedkeuring systeem

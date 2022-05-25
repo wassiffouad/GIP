@@ -16,7 +16,7 @@ if (isset($_POST["knop"])) {
 
     $sql = "UPDATE users
         SET lname ='" . $naam . "', fname ='" . $voornaam . "',email ='" . $email  . "'
-        WHERE volgnummer =" . $_SESSION['unique_id'];
+        WHERE unique_id =" . $_SESSION['unique_id'];
 
     $resultaat = $mysqli->query($sql);
     $row["fname"] = $voornaam;
