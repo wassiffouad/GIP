@@ -2,10 +2,12 @@
   session_start();
   include_once "php/config.php";
   if(!isset($_SESSION['unique_id'])){
-    header("location: login.php");
+    header("location: ../index.php");
   }
 ?>
-<?php include_once "header.php"; ?>
+<?php include "header.php"; ?>
+<link rel="stylesheet" href="chat/style.css">
+
 <body>
   <div class="wrapper">
     <section class="chat-area">

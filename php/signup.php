@@ -25,17 +25,18 @@
                         if(in_array($img_type, $types) === true){
                             $time = time();
                             $new_img_name = $time.$img_name;
-                            if(move_uploaded_file($tmp_name,"fotos/".$new_img_name)){
+                            if(move_uploaded_file($tmp_name,"images/".$new_img_name)){
                                 $ran_id = rand(time(), 100000000);
                                 $status = "Active now";
                                 $encrypt_pass = md5($password);
-                                $insert_query = mysqli_query($conn, "INSERT INTO users (unique_id, fname, lname, email, password, img, status)
-                                VALUES ({$ran_id}, '{$fname}','{$lname}', '{$email}', '{$encrypt_pass}', '{$new_img_name}', '{$status}')");
+                                $insert_query = mysqli_query($conn, "INSERT INTO users (unique_id, fname, lname, email, password, img, status,admin, subscription_id, counter)
+                                VALUES ({$ran_id}, '{$fname}','{$lname}', '{$email}', '{$encrypt_pass}', '{$new_img_name}', '{$status}',0,0,0)");
                                 if($insert_query){
                                     $select_sql2 = mysqli_query($conn, "SELECT * FROM users WHERE email = '{$email}'");
                                     if(mysqli_num_rows($select_sql2) > 0){
                                         $result = mysqli_fetch_assoc($select_sql2);
                                         $_SESSION['unique_id'] = $result['unique_id'];
+                                        //echo "account aangemaakt";
                                         echo "success";
                                     }else{
                                         echo "This email address not Exist!";

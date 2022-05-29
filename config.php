@@ -1,8 +1,11 @@
 <?php
-$SETTINGS["mysql_user"]='';
-$SETTINGS["mysql_pass"]='root';
-$SETTINGS["hostname"]='localhost';
-$SETTINGS["mysql_database"]='chatapp';
-$SETTINGS["data_table"]='registrations';
-$SETTINGS["paypal_address"]='email@domain.com';
+  $hostname = "localhost";
+  $username = "root";
+  $password = "";
+  $dbname = "chatapp";
+
+  $conn = mysqli_connect($hostname, $username, $password, $dbname);
+  if(!$conn){
+    echo "Database connection error".mysqli_connect_error();
+  }
 ?>
