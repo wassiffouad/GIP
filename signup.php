@@ -39,12 +39,12 @@
           <input type="submit" name="submit" value="Make account">
         </div>
       </form>
-      <div class="link">Already signed up? <a href="../index.php">Login now</a></div>
+      <div class="link">Already signed up? <a href="index.php">Login now</a></div>
     </section>
   </div>
 
-  <script src="../js/pass-show-hide.js"></script>
-  <script src="../js/signup.js"></script>
+  <script src="js/pass-show-hide.js"></script>
+  <script src="js/signup.js"></script>
 
 </body>
 </html>
