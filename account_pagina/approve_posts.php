@@ -24,7 +24,7 @@ $sql2 = "INSERT INTO tblposts (volgnummer,foto,soort,beschrijvingPost,poster,dat
 if ($mysqli->query($sql2)) {
     $sql3 = "DELETE FROM tblgoedkeuring WHERE volgnummer = " . $row["volgnummer"];
     $resultaat1 = $mysqli->query($sql3);
-    header("Location: index1.php");
+    header("Location: approval_posts.php");
 
 } else {
     print $sql2;

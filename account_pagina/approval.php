@@ -54,7 +54,7 @@ include "../php/config.php";
     <h1>Success</h1>
     <p>My staff is now checking if your product is good for our site</p>
     <br>
-    <a href="index1.php" class="btn btn-success">Go to home page</a>
+    <a href="../index1.php" class="btn btn-success">Go to home page</a>
 </div>
 </body>
 </html>

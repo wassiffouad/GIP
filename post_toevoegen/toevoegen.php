@@ -39,7 +39,7 @@ include "../php/config.php";
                         $counter++;
                         $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
                         $resultaat = $mysqli->query($sql2);
-                        header("Location: ../account/approval.php");
+                        header("Location: ../account_pagina/approval.php");
 
 
                     } else {
@@ -73,7 +73,7 @@ include "../php/config.php";
                         $counter++;
                         $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
                         $resultaat = $mysqli->query($sql2);
-                        header("Location: ../account/approval.php");
+                        header("Location: ../account_pagina/approval.php");
 
 
                     } else {
@@ -111,7 +111,7 @@ include "../php/config.php";
                         $counter++;
                         $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
                         $resultaat = $mysqli->query($sql2);
-                        header("Location: ../account/approval.php");
+                        header("Location: ../account_pagina/approval.php");
 
 
                     } else {

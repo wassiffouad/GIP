@@ -13,7 +13,7 @@ $counter--;
 $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
 $resultaat = $mysqli->query($sql2);
 if ($mysqli->query($sql) === TRUE) {
-    header("Location: remove_posts.php");
+    header("Location: approval_posts.php");
 } else {
     echo "ERROR" . $mysqli->error;
 }
