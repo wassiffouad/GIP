@@ -38,13 +38,7 @@ if (isset($_POST["knop"])){
         $sql = "UPDATE users SET password = '".$encrypt_pass ." ' WHERE unique_id =". $_SESSION['unique_id'];
         $resultaat = $mysqli->query($sql);
         //print 'Password succesfully changed!';
-        ?>
-        <script>
-            function wachtwoord() {
-                alert("Password succesfully changed!");
-            }
-        </script>
-<?php
+        header("Location: account.php");
 
     }
 

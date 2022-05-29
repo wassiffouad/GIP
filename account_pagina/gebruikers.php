@@ -196,7 +196,7 @@ if(mysqli_num_rows($sql) > 0){
                             $results_per_page = 2;
 
                             // aantal in databank
-                            $sql7 = "SELECT * FROM tblposts";
+                            $sql7 = "SELECT * FROM users";
                             $result = mysqli_query($conn, $sql7);
                             $number_of_results = mysqli_num_rows($result);
 
