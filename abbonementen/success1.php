@@ -2,7 +2,7 @@
 session_start();
 
 include "connect.php";
-include "php/config.php";
+include "../php/config.php";
 
 $resultaat = $mysqli->query("UPDATE users SET subscription_id = 1 WHERE unique_id =". $_SESSION["unique_id"]);
 ?>

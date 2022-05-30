@@ -114,9 +114,9 @@ if(mysqli_num_rows($sql) > 0){
                 <?php
                 if ($row["admin"] === '1'){
                     print ' <a href="gebruikers.php" class="list-group-item list-group-item-action">User Management</a>
-                            <a href="approval_posts" class="list-group-item list-group-item-action">Approval Posts</a>
+                            <a href="approval_posts.php" class="list-group-item list-group-item-action">Approval Posts</a>
                             <a href="wachtwoord.php" class="list-group-item list-group-item-action">Change Password</a>
-                            <a href="toevoegen.php" class="list-group-item list-group-item-action">Post Item</a>
+                            <a href="../post_toevoegen/toevoegen.php" class="list-group-item list-group-item-action">Post Item</a>
                             <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
                             <a href="remove_posts.php" class="list-group-item list-group-item-action">Remove Posts</a>
                             <a href="edit_posts.php" class="list-group-item list-group-item-action">Edit Posts</a>

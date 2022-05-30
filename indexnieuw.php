@@ -233,37 +233,18 @@ if(!isset($_SESSION['unique_id'])){
                 $sql4 = "SELECT * FROM users WHERE user_id = " . $row3["id_user"];
                 $persoon = $mysqli->query($sql4) -> fetch_assoc();
 
-                print '
-                        <div class="card" style="width: 18rem; margin-left: 10px; margin-right: 10px;">
-                            <div class="featured__item__pic set-bg card-img-top" style="height: 200px;" data-setbg="images/posts/' . $row3["foto"] .  '" )>
-                            <div class="card-body">
-                                <ul class="featured__item__pic__hover">
-                                    <!--<li><a href="#"><i class="fa fa-heart"></i></a></li>-->
-                                    ';
-                                if ($row["subscription_id"] > '0'){
-                                    print '
-                                    <li><a href="chat.php?user_id='. $persoon["unique_id"] . '"><i class="fab fa-telegram-plane"></i></a></li>
-                                    ';
-                                }
-                                print '
-                                    <!--<li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>-->
-                                </ul>
-                            </div>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title"><strong> ' . $row3["soort"] . '</strong></h5>
-                            <p class="card-text">' . $row3["beschrijvingPost"] . '</p>
-                            <div class="featured__item__text">
-                                <h5>€ ' . $row3["prijs"] . '</h5>
-                            </div>
-                            <p class="card-text">Posted by: ' . $persoon["lname"] . " " . $persoon["fname"] . '<br>
-                                                 On: ' . $row3["datum"] . '<br>
-                                                 From:' .$row3["postcode"] . " " . $row3["stad"] . '</p>
-                        </div>
-                    </div>';
+                print '<div class="card" style="width: 18rem;">
+                          <div class="card-body">
+                            <h5 class="card-title">Card title</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk of the cards content.</p>
+                            <a href="#" class="card-link">Card link</a>
+                            <a href="#" class="card-link">Another link</a>
+                          </div>
+                        </div>';
 }
-        print '</div> <br>
-                <div class="pagination" style="align-self: center;">';
+        print '</div>
+                <div class="pagination">';
         for ($page=1;$page<=$number_of_pages;$page++){
 
             echo '           
