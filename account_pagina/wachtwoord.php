@@ -35,7 +35,7 @@ if (isset($_POST["knop"])){
     }
     else if ( $nieuw == $nieuw1 ){
         $encrypt_pass = md5($nieuw);
-        $sql = "UPDATE users SET password = '".$encrypt_pass ." ' WHERE unique_id =". $_SESSION['unique_id'];
+        $sql = "UPDATE users SET password = '".$encrypt_pass ."' WHERE unique_id =". $_SESSION['unique_id'];
         $resultaat = $mysqli->query($sql);
         //print 'Password succesfully changed!';
         ?>

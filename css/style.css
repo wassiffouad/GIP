@@ -36,6 +36,9 @@ body {
 	font-family: "Cairo", sans-serif;
 	-webkit-font-smoothing: antialiased;
 	font-smoothing: antialiased;
+
+	background: -webkit-linear-gradient(left,whitesmoke, cornflowerblue);
+
 }
 
 h1,

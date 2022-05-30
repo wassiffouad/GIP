@@ -4,130 +4,130 @@ include "../connect.php";
 include "../php/config.php";
 
 
+if (isset($_POST["knopje"])) {
+    $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+    if (mysqli_num_rows($sql) > 0) {
+        $row = mysqli_fetch_assoc($sql);
+        $counter = $row["counter"];
+    }
+    if ($row["subscription_id"] === '1' && $counter < '5') {
+        $naam = $_POST["naam"];
+        $soort = $_POST["soort"];
+        $beschrijving = $_POST["beschrijving"];
+        $prijs = $_POST["prijs"];
+        $stad = $_POST["stad"];
+        $postcode = $_POST["postcode"];
 
-    if (isset($_POST["knopje"])) {
-        $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
-        if (mysqli_num_rows($sql) > 0) {
-            $row = mysqli_fetch_assoc($sql);
-            $counter = $row["counter"];
+        $poster = $_SESSION["unique_id"];
+        $date = date("Y-m-d G:i:s");
+
+
+        //foto
+        $targetDir = "../images/posts/";
+        $fileName = basename($_FILES["afbeelding"]["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+        if (in_array($fileType, $allowTypes)) {
+            if (move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $targetFilePath)) {
+                $sql = "INSERT INTO tblgoedkeuring (volgnummer,foto,soort,beschrijvingPost,poster,datum,likes,zoekertje,prijs,stad,postcode, id_user) 
+                        VALUES (null,'" . $fileName . "','" . $soort . "','" . $beschrijving . "','" . $poster . "','" . $date . "',0,false,'" . $prijs . "','" . $stad . "','" . $postcode . "','" . $_SESSION["user_id"] . "')";
+                //$counter++;
+                if ($mysqli->query($sql)) {
+                    $counter++;
+                    $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
+                    $resultaat = $mysqli->query($sql2);
+                    header("Location: ../account_pagina/approval.php");
+
+
+                } else {
+                    print $mysqli->error;
+                    print $sql;
+
+                }
+            }
         }
-        if ($row["subscription_id"] === '1' && $counter < '5'){
-            $naam = $_POST["naam"];
-            $soort = $_POST["soort"];
-            $beschrijving = $_POST["beschrijving"];
-            $prijs = $_POST["prijs"];
-            $stad = $_POST["stad"];
-            $postcode = $_POST["postcode"];
+    } else if ($row["subscription_id"] === '2' && $counter < '10') {
+        $naam = $_POST["naam"];
+        $soort = $_POST["soort"];
+        $beschrijving = $_POST["beschrijving"];
+        $prijs = $_POST["prijs"];
+        $stad = $_POST["stad"];
+        $postcode = $_POST["postcode"];
+        $poster = $_SESSION["unique_id"];
+        $date = date("Y-m-d G:i:s");
+        //foto
+        $targetDir = "../images/posts/";
+        $fileName = basename($_FILES["afbeelding"]["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
 
-            $poster = $_SESSION["unique_id"];
-            $date = date("Y-m-d G:i:s");
-
-
-            //foto
-            $targetDir = "../images/posts/";
-            $fileName = basename($_FILES["afbeelding"]["name"]);
-            $targetFilePath = $targetDir . $fileName;
-            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-
-            $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-            if (in_array($fileType, $allowTypes)) {
-                if (move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $targetFilePath)) {
-                    $sql = "INSERT INTO tblgoedkeuring (volgnummer,foto,soort,beschrijvingPost,poster,datum,likes,zoekertje,prijs,stad,postcode, id_user) 
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+        if (in_array($fileType, $allowTypes)) {
+            if (move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $targetFilePath)) {
+                $sql = "INSERT INTO tblgoedkeuring (volgnummer,foto,soort,beschrijvingPost,poster,datum,likes,zoekertje,prijs,stad,postcode, id_user) 
                         VALUES (null,'" . $fileName . "','" . $soort . "','" . $beschrijving . "','" . $poster . "','" . $date . "',0,false,'" . $prijs . "','" . $stad . "','" . $postcode . "','" . $_SESSION["user_id"] . "')";
-                    //$counter++;
-                    if ($mysqli->query($sql)) {
-                        $counter++;
-                        $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
-                        $resultaat = $mysqli->query($sql2);
-                        header("Location: ../account_pagina/approval.php");
+                //$counter++;
+                if ($mysqli->query($sql)) {
+                    $counter++;
+                    $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
+                    $resultaat = $mysqli->query($sql2);
+                    header("Location: ../account_pagina/approval.php");
 
 
-                    } else {
-                        print $sql;
-
-                    }
+                } else {
+                    print $sql;
+                    print $mysqli->error;
                 }
             }
-        } else if ($row["subscription_id"] === '2'&& $counter < '10'){
-            $naam = $_POST["naam"];
-            $soort = $_POST["soort"];
-            $beschrijving = $_POST["beschrijving"];
-            $prijs = $_POST["prijs"];
-            $stad = $_POST["stad"];
-            $postcode = $_POST["postcode"];
-            $poster = $_SESSION["unique_id"];
-            $date = date("Y-m-d G:i:s");
-            //foto
-            $targetDir = "../images/posts/";
-            $fileName = basename($_FILES["afbeelding"]["name"]);
-            $targetFilePath = $targetDir . $fileName;
-            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+        }
 
-            $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-            if (in_array($fileType, $allowTypes)) {
-                if (move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $targetFilePath)) {
-                    $sql = "INSERT INTO tblgoedkeuring (volgnummer,foto,soort,beschrijvingPost,poster,datum,likes,zoekertje,prijs,stad,postcode, id_user) 
+    } else if ($row["subscription_id"] === '3' && $counter < '15') {
+        $naam = $_POST["naam"];
+        $soort = $_POST["soort"];
+        $beschrijving = $_POST["beschrijving"];
+        $prijs = $_POST["prijs"];
+        $stad = $_POST["stad"];
+        $postcode = $_POST["postcode"];
+
+        $poster = $_SESSION["unique_id"];
+        $date = date("Y-m-d G:i:s");
+
+
+        //foto
+        $targetDir = "../images/posts/";
+        $fileName = basename($_FILES["afbeelding"]["name"]);
+        $targetFilePath = $targetDir . $fileName;
+        $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
+
+        $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
+        if (in_array($fileType, $allowTypes)) {
+            if (move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $targetFilePath)) {
+                $sql = "INSERT INTO tblgoedkeuring (volgnummer,foto,soort,beschrijvingPost,poster,datum,likes,zoekertje,prijs,stad,postcode, id_user) 
                         VALUES (null,'" . $fileName . "','" . $soort . "','" . $beschrijving . "','" . $poster . "','" . $date . "',0,false,'" . $prijs . "','" . $stad . "','" . $postcode . "','" . $_SESSION["user_id"] . "')";
-                    //$counter++;
-                    if ($mysqli->query($sql)) {
-                        $counter++;
-                        $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
-                        $resultaat = $mysqli->query($sql2);
-                        header("Location: ../account_pagina/approval.php");
+                //$counter++;
+                if ($mysqli->query($sql)) {
+                    $counter++;
+                    $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
+                    $resultaat = $mysqli->query($sql2);
+                    header("Location: ../account_pagina/approval.php");
 
 
-                    } else {
-                        print $sql;
-                        print $mysqli->error;
-                    }
+                } else {
+                    print $sql;
+                    print $mysqli->error;
                 }
             }
+        }
 
-        }else if ($row["subscription_id"] === '3' &&  $counter < '15'){
-            $naam = $_POST["naam"];
-            $soort = $_POST["soort"];
-            $beschrijving = $_POST["beschrijving"];
-            $prijs = $_POST["prijs"];
-            $stad = $_POST["stad"];
-            $postcode = $_POST["postcode"];
-
-            $poster = $_SESSION["unique_id"];
-            $date = date("Y-m-d G:i:s");
-
-
-            //foto
-            $targetDir = "../images/posts/";
-            $fileName = basename($_FILES["afbeelding"]["name"]);
-            $targetFilePath = $targetDir . $fileName;
-            $fileType = pathinfo($targetFilePath, PATHINFO_EXTENSION);
-
-            $allowTypes = array('jpg', 'png', 'jpeg', 'gif');
-            if (in_array($fileType, $allowTypes)) {
-                if (move_uploaded_file($_FILES["afbeelding"]["tmp_name"], $targetFilePath)) {
-                    $sql = "INSERT INTO tblgoedkeuring (volgnummer,foto,soort,beschrijvingPost,poster,datum,likes,zoekertje,prijs,stad,postcode, id_user) 
-                        VALUES (null,'" . $fileName . "','" . $soort . "','" . $beschrijving . "','" . $poster . "','" . $date . "',0,false,'" . $prijs . "','" . $stad . "','" . $postcode . "','" . $_SESSION["user_id"] . "')";
-                    //$counter++;
-                    if ($mysqli->query($sql)) {
-                        $counter++;
-                        $sql2 = "UPDATE users SET counter = {$counter} WHERE unique_id = {$_SESSION['unique_id']}";
-                        $resultaat = $mysqli->query($sql2);
-                        header("Location: ../account_pagina/approval.php");
-
-
-                    } else {
-                        print $sql;
-                        print $mysqli->error;
-                    }
-                }
-            }
-
-        } else {
-            print '<script> 
+    } else {
+        print '<script> 
                     alert("You do not have any posts. Renew your subscription or remove a post to proceed!");
                     </script>';
-        }
-
     }
+
+}
 ?>
 
 <!DOCTYPE html>
@@ -163,18 +163,18 @@ include "../php/config.php";
 <body>
 <div class="wrapper">
     <section class="form signup">
-        <header>Add Item |        <a href="../index1.php" class="logout" style="color: black">Home</a>
+        <header>Add Item | <a href="../index1.php" class="logout" style="color: black">Home</a>
         </header>
         <form action="toevoegen.php" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="error-text"></div>
             <div class="field input">
-                    <label>Name</label>
-                    <input type="text" name="naam" placeholder="" required>
+                <label>Name</label>
+                <input type="text" name="naam" placeholder="" required>
             </div>
-                <div class="field input">
+            <div class="field input">
                 <label>Type</label>
                 <input type="text" name="soort" placeholder="T-shirt, sneaker, broek,..." required>
-                </div>
+            </div>
             <div class="field input">
                 <label>Description</label>
                 <input type="text" name="beschrijving" placeholder="" required>
@@ -184,14 +184,14 @@ include "../php/config.php";
                 <input type="text" name="prijs" placeholder="" required>
             </div>
             <div class="name-details">
-            <div class="field input">
-                <label>City</label>
-                <input type="text" name="stad" placeholder="" required>
-            </div>
-            <div class="field input">
-                <label>ZIP code</label>
-                <input type="text" name="postcode" placeholder="" required>
-            </div>
+                <div class="field input">
+                    <label>City</label>
+                    <input type="text" name="stad" placeholder="" required>
+                </div>
+                <div class="field input">
+                    <label>ZIP code</label>
+                    <input type="text" name="postcode" placeholder="" required>
+                </div>
             </div>
             <div class="field image">
                 <label>Select Image</label>
