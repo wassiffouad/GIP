@@ -1,12 +1,4 @@
 <?php
-
-include "../php/config.php";
-include "../connect.php";
-session_start();
-if(!isset($_SESSION['unique_id'])){
-    header("location: index1.php");
-}
-
 if (isset($_POST["knop"])){
     $nieuw = $_POST["nieuw"];
     $nieuw1 = $_POST["nieuw1"];
@@ -45,62 +37,105 @@ if (isset($_POST["knop"])){
 }
 
 ?>
-<?php include_once "../header.php"; ?>
-<link rel="stylesheet" href="../style.css">
 
-<body>
-<div class="wrapper">
-    <section class="form signup">
-        <header>Change password | <a href="../index1.php" class="logout" style="color: black">Home</a></header>
-        <form method="post" action="wachtwoord.php" autocomplete="off">
-            <div class="error-text"></div>
-                <div class="field input">
-                    <label>New password</label>
-                    <input type="password" name="nieuw" id="input" placeholder="new password" required="required"/>
-                    <i class="fas fa-eye"></i>
-                </div>
-                <div class="field input">
-                    <label>Confirm password</label>
-                    <input type="password" name="nieuw1" placeholder="confirm password" required="required"/>
-                    <i class="fas fa-eye"></i>
-                </div>
 
-            <div class="field input">
-                <label>Old Password</label>
-                <input type="password" name="oud" placeholder="old password" required="required"/>
-                <i class="fas fa-eye"></i>
+<!-- Breadcrumb Section End -->
+<?php include "hoofding.php"?>
+
+<?php
+include "../php/config.php";
+$sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
+if(mysqli_num_rows($sql) > 0){
+    $row = mysqli_fetch_assoc($sql);
+}
+?>
+
+
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3 ">
+
+            <div class="list-group ">
+                <a href="account.php" class="list-group-item list-group-item-action">Info</a>
+                <?php
+                if ($row["admin"] === '1'){
+                    print ' <a href="gebruikers.php" class="list-group-item list-group-item-action">User Management</a>
+                            <a href="approval_posts" class="list-group-item list-group-item-action">Approval Posts</a>
+                            <a href="wachtwoord.php" class="list-group-item list-group-item-action active">Change Password</a>
+                            <a href="../post_toevoegen/toevoegen.php" class="list-group-item list-group-item-action">Post Item</a>
+                            <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
+                            <a href="remove_posts.php" class="list-group-item list-group-item-action">Remove Posts</a>
+                            <a href="edit_posts.php" class="list-group-item list-group-item-action">Edit Posts</a>
+                            <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
+                            <a href="#" class="list-group-item list-group-item-action">****</a>
+                            <a href="#" class="list-group-item list-group-item-action">****</a>
+                            <a href="#" class="list-group-item list-group-item-action">****</a>
+                            ';
+                }else if ($row["subscription_id"] > '0'){
+                    print '        
+                            <a href="wachtwoord.php" class="list-group-item list-group-item-action active">Change Password</a>
+                            <a href="../post_toevoegen/toevoegen.php" class="list-group-item list-group-item-action">Post Item</a>
+                            <a href="edit_profile.php" class="list-group-item list-group-item-action active">Edit Profile</a>
+                            <a href="remove_posts.php" class="list-group-item list-group-item-action">Remove Posts</a>
+                            <a href="edit_posts.php" class="list-group-item list-group-item-action">Edit Posts</a>
+                            <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
+                            <a href="#" class="list-group-item list-group-item-action">****</a>
+                            <a href="#" class="list-group-item list-group-item-action">****</a>
+                            <a href="#" class="list-group-item list-group-item-action">****</a>';
+                } else{
+                    print '
+                           <a href="wachtwoord.php" class="list-group-item list-group-item-action active">Change Password</a>
+                           <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
+                           <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
+                           ';
+                }
+                ?>
             </div>
-            <div class="field button">
-                <input type="submit" onclick="wachtwoord()" name="knop" value="Update">
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <h4>Your Profile</h4>
+                            <hr>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <form method="post" action="edit_profile.php" autocomplete="off">
+                                <div class="form-group row">
+                                    <label for="name" class="col-4 col-form-label">New Password</label>
+                                    <div class="col-8">
+                                        <input id="name" name="nieuw" placeholder="New Password" class="form-control here" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="name" class="col-4 col-form-label">Confirm Password</label>
+                                    <div class="col-8">
+                                        <input id="oud" name="nieuw1" placeholder="Confirm Password" class="form-control here" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <label for="email" class="col-4 col-form-label">Email</label>
+                                    <div class="col-8">
+                                        <input id="email" name="oud" placeholder="Old Password" class="form-control here" required="required" type="password">
+                                    </div>
+                                </div>
+                                <div class="form-group row">
+                                    <div class="offset-4 col-8">
+                                        <button name="knop" type="submit" class="btn btn-primary">Update Password</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div>
             </div>
-        </form>
-    </section>
+        </div>
+    </div>
 </div>
-
-<script src="../js/pass-show-hide.js"></script>
-
 </body>
-</html>
-
-
-
-
-
-
-
-
-    <!-- Js Plugins -->
-    <script src="../js/jquery-3.3.1.min.js"></script>
-    <script src="../js/bootstrap.min.js"></script>
-    <script src="../js/jquery.nice-select.min.js"></script>
-    <script src="../js/jquery-ui.min.js"></script>
-    <script src="../js/jquery.slicknav.js"></script>
-    <script src="../js/mixitup.min.js"></script>
-    <script src="../js/owl.carousel.min.js"></script>
-    <script src="../js/main.js"></script>
-
-
-
-</body>
-
-</html>

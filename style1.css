@@ -29,9 +29,12 @@ img{max-width:100%;}
 body{
 padding:0;
 margin:0;
-    background:#130079a6;
+	background: -webkit-linear-gradient(left, #f5f5f5, cornflowerblue);
+
     background-size: cover;
-   font-family: 'Monda', sans-serif;
+	font-family: "Cairo", sans-serif;
+	-webkit-font-smoothing: antialiased;
+	font-smoothing: antialiased;
 }
 
 h1,h2,h3,h4,h5,h6{

@@ -1,5 +1,8 @@
 body{
     background: -webkit-linear-gradient(left,whitesmoke, cornflowerblue);
+    font-family: "Cairo", sans-serif;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
 }
 .emp-profile{
     padding: 3%;
@@ -31,6 +34,18 @@ body{
     right: 0;
     top: 0;
 }
+.section-title h2:after {
+    position: absolute;
+    left: 0;
+    bottom: -15px;
+    right: 0;
+    height: 4px;
+    width: 80px;
+    background: darkblue;
+    content: "";
+    margin: 0 auto;
+}
+
 .profile-head h5{
     color: #333;
 }

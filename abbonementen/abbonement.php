@@ -9,7 +9,10 @@ if(!isset($_SESSION['unique_id'])){
 <!DOCTYPE HTML>
 <html>
 <head>
-    <head>
+    <style>
+
+    </style>
+
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
@@ -19,25 +22,26 @@ if(!isset($_SESSION['unique_id'])){
         <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
         <!-- Css Styles -->
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
-        <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
-        <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
-        <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
-        <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
-        <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
-        <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
-        <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
-        <link rel="stylesheet" href="../css/style.css" type="text/css">
-    </head>
-    <title>Pricing Plans and Subscription Payment | by PHPJabbers.com</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="../https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"/>
+    <link rel="stylesheet" href="../css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../css/jquery-ui.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../css/style.css" type="text/css">
+
     <link href="../style1.css" rel="stylesheet" type="text/css" media="all"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <link href="https://fonts.googleapis.com/css?family=Monda" rel="stylesheet">
 
     <script src="../js/jquery-1.11.0.min.js"></script>
     <script src="../js/jquery.magnific-popup.js" type="text/javascript"></script>
     <script src="../js/jquery.validate.min.js" type="text/javascript"></script>
+</head>
     <header class="header">
         <?php
         $sql = mysqli_query($conn, "SELECT * FROM users WHERE unique_id = {$_SESSION['unique_id']}");
@@ -80,15 +84,16 @@ if(!isset($_SESSION['unique_id'])){
                 </div>
             </div>
         </div>
-        <div class="container">
-            <div class="row">
+        <div class="container" >
+            <div class="row" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;     background: -webkit-linear-gradient(left,whitesmoke,#41ac96 );
+ ">
                 <div class="col-lg-3">
                     <div class="header__logo" >
                         <a href="../index1.php"><img src="img/wasco.png" alt="" style="height: 80px; "></a>
                     </div>
                 </div>
                 <div class="col-lg-6">
-                    <nav class="header__menu" style="" >
+                    <nav class="header__menu" style="margin-left: 50px; margin-right: 50px;" >
                         <ul>
                             <!--<li><a href="./shop-grid.html">Shop</a></li>
                             <li><a href="#">Pages</a>
@@ -137,9 +142,11 @@ if(!isset($_SESSION['unique_id'])){
 
     <div class="priceing-table w3l">
         <div class="wrap">
-            <h1>Different Fees</h1>
+            <div class="section-title">
+                <h1 style="color: black">Different Fees</h1>
+            </div>
             <div class="priceing-table-main">
-                <div class="price-grid">
+                <div class="price-grid" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="price-block agile">
                         <div class="price-gd-top pric-clr1">
                             <h4>Basic</h4>
@@ -163,7 +170,7 @@ if(!isset($_SESSION['unique_id'])){
                         </div>
                     </div>
                 </div>
-                <div class="price-grid">
+                <div class="price-grid" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="price-block agile">
                         <div class="price-gd-top pric-clr2">
                             <h4>Standard</h4>
@@ -187,7 +194,7 @@ if(!isset($_SESSION['unique_id'])){
                         </div>
                     </div>
                 </div>
-                <div class="price-grid wthree">
+                <div class="price-grid wthree" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                     <div class="price-block agile">
                         <div class="price-gd-top pric-clr3">
                             <h4>Premium</h4>
