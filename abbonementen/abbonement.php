@@ -85,7 +85,7 @@ if(!isset($_SESSION['unique_id'])){
             </div>
         </div>
         <div class="container" >
-            <div class="row" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;     background: -webkit-linear-gradient(left,whitesmoke,#41ac96 );
+            <div class="row" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;"
  ">
                 <div class="col-lg-3">
                     <div class="header__logo" >

@@ -109,7 +109,7 @@ if (!isset($_SESSION['unique_id'])) {
         </div>
     </div>
     <div class="container">
-        <div class="row">
+        <div class="row" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
             <div class="col-lg-3">
                 <div class="header__logo"
                 ">
@@ -144,20 +144,9 @@ if (!isset($_SESSION['unique_id'])) {
                     }
                     ?>
 
-
-                    <!--<li><a href="./contact.html">Contact</a></li>-->
-
                     <li><a href="account_pagina/wachtwoord.php">Password</a></li>
                 </ul>
             </nav>
-        </div>
-        <div class="col-lg-3">
-            <!--<div class="header__cart">
-                <ul>
-                    <li><a href="#"><i class="fa fa-shopping-bag"></i> <span>3</span></a></li>
-                </ul>
-                <div class="header__cart__price">item: <span>$150.00</span></div>
-            </div>-->
         </div>
     </div>
     <div class="humberger__open">
@@ -222,7 +211,7 @@ if (!isset($_SESSION['unique_id'])) {
                     </div>-->
                 </div>
             </div>
-            <div style="display: flex; align-content: center; justify-content: center;">';
+            <div class="breedte" style="display: flex; align-content: center; justify-content: center;">';
 
     while ($row3 = $result->fetch_assoc()) {
 

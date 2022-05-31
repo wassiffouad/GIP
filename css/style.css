@@ -687,8 +687,11 @@ ol {
 /*--------------------------------- Responsive Media Quaries -----------------------------*/
 
 @media only screen and (min-width: 1200px) {
-	.container {
-		max-width: 1170px;
+	.featured__item{
+		width: 100%;
+	}
+	.breedte{
+		width: 100%;
 	}
 }
 
