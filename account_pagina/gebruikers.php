@@ -146,7 +146,7 @@ include "hoofding.php";
                                 <div class="pagination" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">';
                         for ($page = 1; $page <= $number_of_pages; $page++) {
 
-                            echo '<a href="index1.php.?page=' . $page . '">' . $page . '</a>';
+                            echo '<a href="gebruikers.php.?page=' . $page . '">' . $page . '</a>';
                         }
                         print '</div>'
                         ?>

@@ -23,7 +23,9 @@ if (!isset($_SESSION['unique_id'])) {
             margin: 0;
         }
 
-        div.pagination a {display: inline;}
+        div.pagination a {
+            display: inline;
+        }
 
         div.pagination a {
             color: black;
@@ -40,7 +42,9 @@ if (!isset($_SESSION['unique_id'])) {
             border: 1px solid #4CAF50;
         }
 
-        div.pagination  a:hover:not(.active) {background-color: cornflowerblue;}
+        div.pagination a:hover:not(.active) {
+            background-color: cornflowerblue;
+        }
 
 
     </style>
@@ -59,6 +63,11 @@ if (!isset($_SESSION['unique_id'])) {
     <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="css/navbar.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:500&display=swap" rel="stylesheet">
+
+
 </head>
 
 <body>
@@ -73,85 +82,74 @@ if (!isset($_SESSION['unique_id'])) {
     }
     ?>
     <div class="header__top">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-6 col-md-6">
-
-                </div>
-                <div class="col-lg-6 col-md-6">
-                    <div class="header__top__right">
-                        <div class="header__top__right__social">
-                            <a href="#"><i class="fa fa-facebook"></i></a>
-                            <a href="#"><i class="fa fa-twitter"></i></a>
-                            <a href="#"><i class="fa fa-linkedin"></i></a>
-                            <a href="#"><i class="fa fa-pinterest-p"></i></a>
-                        </div>
-                        <div class="header__top__right__language">
-                            <img src="img/language.png" alt="">
-                            <div>English</div>
-                            <span class="arrow_carrot-down"></span>
-                            <ul>
-
-                                <li><a href="#">English</a></li>
-                            </ul>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="php/logout.php?logout_id=<?php echo $row['unique_id']; ?>" class="logout">Logout
-                                |</a>
-                        </div>
-                        <div class="header__top__right__auth">
-                            <a href="account_pagina/account.php">Account</a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
     <div class="container">
-        <div class="row" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
+        <div class="row" id="hallo" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
             <div class="col-lg-3">
-                <div class="header__logo"
-                ">
-                <a href="index1.php"><img src="img/wasco.png" alt="" style="height: 80px;"></a>
+                <div class="header">
+                    <a  class="logo" href="index1.php"><img src="images/wasco.png" alt="" style="height: 60px;"></a>
+                </div>
+            </div>
+            <div class="col-lg-6">
+                <nav class="navbar navbar-expand-lg">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="  width: 35px; height: 5px; background-color: cornflowerblue; margin: 6px 0;">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav">
+                            <?php
+                            if ($row["subscription_id"] === '0') {
+                                print ' 
+                                <li class="nav-item active ">
+                                    <a class="nav-link cta" href="index1.php">Home<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="abbonementen/abbonement.php">Subscribe to chat and post</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="account_pagina/wachtwoord.php">Password</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="account_pagina/account.php">Account</a>                       
+                                </li>
+                                <li class="nav-item">
+                                    <a href="php/logout.php?logout_id=' . $row["unique_id"] . '" class="nav-link">Logout</a>                            
+                                </li>           
+                                           ';
+                            } else {
+                                print '
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="index1.php">Home<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="abbonementen/abbonement.php">Subscription<span class="sr-only">(current)</span></a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="chat.php">Chat</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="post_toevoegen/toevoegen.php">Post</a>
+                                </li>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="account_pagina/wachtwoord.php">Password</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="account_pagina/account.php">Account</a>                       
+                                </li>
+                               <li class="nav-item">
+                                    <a class="nav-link" href="php/logout.php?logout_id=' . $row["unique_id"] . '">Logout</a>                   
+                                </li>                               
+                                
+                                ';
+
+                            }
+                            ?>
+                        </ul>
+                    </div>
+                </nav>
             </div>
         </div>
-        <div class="col-lg-6">
-            <nav class="header__menu">
-                <ul>
-                    <!--<li><a href="./shop-grid.html">Shop</a></li>
-                    <li><a href="#">Pages</a>
-                        <ul class="header__menu__dropdown">
-                            <li><a href="./shop-details.html">Shop Details</a></li>
-                            <li><a href="./shoping-cart.html">Shoping Cart</a></li>
-                            <li><a href="./checkout.html">Check Out</a></li>
-                            <li><a href="./blog-details.html">Blog Details</a></li>
-                        </ul>-->
-                    </li>
-
-
-                    <?php
-                    if ($row["subscription_id"] === '0') {
-                        print '                            
-                                            <li><a href="abbonementen/abbonement.php">Subscribe to chat and post</a></li>
-                                           ';
-                    } else {
-                        print '
-                                            <li><a href="abbonementen/abbonement.php">Subscriptions</a></li>                            
-                                            <li><a href="chat.php">Chat</a></li>
-                                            <li><a href="post_toevoegen/toevoegen.php">Post Item</a></li>
-                                            ';
-                    }
-                    ?>
-
-                    <li><a href="account_pagina/wachtwoord.php">Password</a></li>
-                </ul>
-            </nav>
-        </div>
-    </div>
-    <div class="humberger__open">
-        <i class="fa fa-bars"></i>
-    </div>
     </div>
 </header>
 <!-- Header Section End -->
@@ -211,7 +209,9 @@ if (!isset($_SESSION['unique_id'])) {
                     </div>-->
                 </div>
             </div>
-            <div class="breedte" style="display: flex; align-content: center; justify-content: center;">';
+            <div class="breedte" style="display: flex; align-content: center; justify-content: center;">
+            <div class="row">';
+
 
     while ($row3 = $result->fetch_assoc()) {
 
@@ -220,6 +220,7 @@ if (!isset($_SESSION['unique_id'])) {
 
         print '
                     <div class="featured__item">
+                    <div class="col-sm">
                         <div class="card" style="width: 18rem; margin-left: 10px; margin-right: 10px; box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
                             <div class="featured__item__pic set-bg card-img-top" style="height: 300px;" data-setbg="images/posts/' . $row3["foto"] . '" )>
                             <div class="card-body">
@@ -247,9 +248,11 @@ if (!isset($_SESSION['unique_id'])) {
                                                  From:' . $row3["postcode"] . " " . $row3["stad"] . '</p>
                            </div>
                         </div>
-                    </div>';
+                        </div>
+                      </div>';
     }
-    print '</div> <br>
+    print '</div>
+            </div> <br>
                 <div class="pagination" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">';
     for ($page = 1; $page <= $number_of_pages; $page++) {
 

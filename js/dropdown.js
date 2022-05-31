@@ -1,10 +1,10 @@
-var times = 0;
-function loguit() {
-    times += 1;
-    var x = document.getElementById("logout");
-    if (times %2 !==0){
-        x.style.display = "block";
-    } else{
-        x.style.display = "none";
-    }
+
+    function myFunction() {
+    var x = document.getElementById("myLinks");
+    if (x.style.display === "block") {
+    x.style.display = "none";
+} else {
+    x.style.display = "block";
 }
+}
+

@@ -30,7 +30,7 @@ if(mysqli_num_rows($sql2) > 0){
             border: 1px solid #4CAF50;
         }
 
-        .pagination a:hover:not(.active) {background-color: #ddd;}
+        .pagination a:hover:not(.active) {background-color: cornflowerblue;}
 
         .pagination a:first-child {
             border-top-left-radius: 5px;
@@ -61,9 +61,6 @@ if(mysqli_num_rows($sql2) > 0){
                             <a href="remove_posts.php" class="list-group-item list-group-item-action ">Remove Posts</a>
                             <a href="edit_posts.php" class="list-group-item list-group-item-action">Edit Posts</a>
                             <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
-                            <a href="#" class="list-group-item list-group-item-action">****</a>
-                            <a href="#" class="list-group-item list-group-item-action">****</a>
-                            <a href="#" class="list-group-item list-group-item-action">****</a>
                             ';
                 }else if ($row["subscription_id"] > '0'){
                     print '        
@@ -72,10 +69,7 @@ if(mysqli_num_rows($sql2) > 0){
                             <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
                             <a href="remove_posts.php" class="list-group-item list-group-item-action">Remove Posts</a>
                             <a href="edit_posts.php" class="list-group-item list-group-item-action">Edit Posts</a>
-                            <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
-                            <a href="#" class="list-group-item list-group-item-action">****</a>
-                            <a href="#" class="list-group-item list-group-item-action">****</a>
-                            <a href="#" class="list-group-item list-group-item-action">****</a>';
+                            <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>';
                 } else{
                     print '
                            <a href="wachtwoord.php" class="list-group-item list-group-item-action">Change Password</a>
