@@ -96,7 +96,7 @@ if (!isset($_SESSION['unique_id'])) {
                         <a  class="logo" href="index1.php"><img src="images/shique.png" alt="" style="height: 150px; width: 200px;"></a>
                     </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
-                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="  width: 35px; height: 5px; background-color: cornflowerblue; margin: 6px 0;">
+                            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="  width: 35px; height: 5px; background-color: black; margin: 6px 0;">
                         <span class="navbar-toggler-icon"></span>
                     </button>
                     <div class="collapse navbar-collapse" id="navbarNav">
