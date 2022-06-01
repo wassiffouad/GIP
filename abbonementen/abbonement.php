@@ -19,6 +19,7 @@ if(!isset($_SESSION['unique_id'])){
     <title>Sucbcription page</title>
 
         <!-- Google Font -->
+        <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;600;900&display=swap" rel="stylesheet">
 
         <!-- Css Styles -->
 
@@ -53,17 +54,22 @@ if(!isset($_SESSION['unique_id'])){
         $row = mysqli_fetch_assoc($sql);
     }
     ?>
+
     <div class="header__top">
     </div>
     <div class="container">
         <div class="row" id="hallo" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
             <div class="col-lg-3">
-                <div class="header">
-                    <a  class="logo" href="../index1.php"><img src="../images/wasco.png" alt="" style="height: 60px;"></a>
+                <div class="header" id="hidden">
+                    <a  class="logo" href="../index1.php"><img src="../images/shique.png" alt="" style="height: 150px; width: 200px;"></a>
                 </div>
+
             </div>
             <div class="col-lg-6">
                 <nav class="navbar navbar-expand-lg">
+                    <div class="header">
+                        <a  class="logo" href="../index1.php"><img src="../images/shique.png" alt="" style="height: 150px; width: 200px;"></a>
+                    </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="  width: 35px; height: 5px; background-color: cornflowerblue; margin: 6px 0;">
                         <span class="navbar-toggler-icon"></span>
@@ -77,7 +83,7 @@ if(!isset($_SESSION['unique_id'])){
                                     <a class="nav-link" href="../index1.php">Home<span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
-                                    <a class="nav-link" href="abbonementen/abbonement.php">Subscribe to chat and post</a>
+                                    <a class="nav-link cta" href="abbonementen/abbonement.php">Subscribe</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="../account_pagina/wachtwoord.php">Password</a>

@@ -72,6 +72,14 @@ body{
   border-radius: 5px;
   border: 1px solid #ccc;
 }
+.form form textarea{
+  height: 80px;
+  width: 100%;
+  font-size: 16px;
+  padding: 0 10px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
 .form form .field input{
   outline: none;
 }
@@ -344,9 +352,15 @@ body{
   opacity: 1;
   pointer-events: auto;
 }
+#hidden1{
+  display: none;
+}
 
 /* Responive media query */
 @media screen and (max-width: 450px) {
+  #hidden{
+    display: none;
+  }
   .form, .users{
     padding: 20px;
   }

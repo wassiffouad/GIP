@@ -10,10 +10,10 @@ if(mysqli_num_rows($sql) > 0){
 
 
     if ($_SERVER['REQUEST_METHOD'] == "POST"){
-            //echo "<pre>";
-            //print_r($_POST);
-            //print_r($_FILES);
-            //echo "</pre>";
+            echo "<pre>";
+            print_r($_POST);
+            print_r($_FILES);
+            echo "</pre>";
 
 
             if (isset($_FILES["file"]["name"]) && $_FILES["file"]["name"] != ""){
@@ -32,7 +32,6 @@ if(mysqli_num_rows($sql) > 0){
                         if(move_uploaded_file($tmp_name,"../php/images/".$new_img_name)) {
                             $sql = "UPDATE users SET img = '" . $new_img_name ."' WHERE unique_id = '{$_SESSION['unique_id']}'";
                             $resultaat = $mysqli->query($sql);
-
                             header("Location: account.php");
                         }
 

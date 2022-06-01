@@ -9,6 +9,7 @@
 <body>
   <div class="wrapper">
     <section class="form login">
+        <a  class="logo" href="index.php"><img src="images/shique.png" alt="" style="height: 50px; width: 200px; float: right;"></a>
       <header>Login</header>
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text"></div>

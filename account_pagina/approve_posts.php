@@ -5,6 +5,8 @@ include "../config.php";
 $resultaat = $mysqli->query("SELECT * FROM tblgoedkeuring WHERE id_user = ". $_GET['teaccepteer']);
     $row = $resultaat->fetch_assoc();
 
+$resultaat1 = $mysqli->query("SELECT * FROM users WHERE user_id = ". $_GET['teaccepteer']);
+$row1 = $resultaat1->fetch_assoc();
 
 $foto = $row["foto"];
 $soort = $row["soort"];
@@ -12,7 +14,7 @@ $beschrijving = $row["beschrijvingPost"];
 $prijs = $row["prijs"];
 $stad = $row["stad"];
 $postcode = $row["postcode"];
-$poster = $_SESSION["unique_id"];
+$poster = $row1["unique_id"];
 $date = date("Y-m-d G:i:s");
 $likes = $row["likes"];
 $zoekertje = $row["zoekertje"];

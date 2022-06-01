@@ -9,7 +9,8 @@
 <body>
   <div class="wrapper">
     <section class="form signup">
-      <header>Sign up </header>
+        <a  class="logo" href="index1.php"><img src="images/shique.png" alt="" style="height: 50px; width: 200px; float: right;"></a>
+        <header>Sign up </header>
       <form action="#" method="POST" enctype="multipart/form-data" autocomplete="off">
         <div class="error-text"></div>
         <div class="name-details">

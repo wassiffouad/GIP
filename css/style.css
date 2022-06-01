@@ -75,7 +75,7 @@ p {
 img {
     max-width: 100%;
 }
-
+textarea:focus,
 input:focus,
 select:focus,
 button:focus,
@@ -687,6 +687,9 @@ ol {
 
 /* Wide Mobile = 480px */
 @media screen and (max-width: 400px) {
+    #hidden{
+        display: none;
+    }
 
     .header__logo{
         width: 70%;

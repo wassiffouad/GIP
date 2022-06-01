@@ -15,23 +15,47 @@
                             <a href="remove_posts.php" class="list-group-item list-group-item-action">Remove Posts</a>
                             <a href="edit_posts.php" class="list-group-item list-group-item-action">Edit Posts</a>
                             <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
-                            ';
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete Account</button>';
+
                 }else if ($row["subscription_id"] > '0'){
                     print '        
                             <a href="wachtwoord.php" class="list-group-item list-group-item-action">Change Password</a>
                             <a href="toevoegen.php" class="list-group-item list-group-item-action">Post Item</a>
                             <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
-                            <a href="remove_posts.php" class="list-group-item list-group-item-action active">Remove Posts</a>
+                            <a href="remove_posts.php" class="list-group-item list-group-item-action">Remove Posts</a>
                             <a href="edit_posts.php" class="list-group-item list-group-item-action">Edit Posts</a>
-                            <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>';
+                            <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
+                            <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete Account</button>';
                 } else{
                     print '
                            <a href="wachtwoord.php" class="list-group-item list-group-item-action">Change Password</a>
                            <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
                            <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
+                           <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#exampleModal">Delete Account</button>
                            ';
                 }
                 ?>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Delete Account</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                Are u sure u want to delete your account?<br>
+                                There is no going back from here!
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-danger"><a href="verwijder_account.php?tewissen='<?php  $row["unique_id"]  ?>'" style="text-decoration: none; color: white">Delete Account</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-md-9">

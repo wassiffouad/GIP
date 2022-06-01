@@ -52,7 +52,7 @@ if (isset($_POST["knop"])) {
                 } else{
                     print '
                            <a href="wachtwoord.php" class="list-group-item list-group-item-action">Change Password</a>
-                           <a href="edit_profile.php" class="list-group-item list-group-item-action">Edit Profile</a>
+                           <a href="edit_profile.php" class="list-group-item list-group-item-action active">Edit Profile</a>
                            <a href="profielfoto.php" class="list-group-item list-group-item-action">Edit Profile Picture</a>
                            ';
                 }

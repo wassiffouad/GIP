@@ -105,6 +105,7 @@
 
                             //neem geselecteerde resultaten van database en toon op pagina
                             $sql9 = "SELECT * FROM tblposts WHERE poster = " . $_SESSION["unique_id"] . " LIMIT " . $this_page_first_result . ',' . $results_per_page;
+
                             $result = mysqli_query($conn, $sql9);
                             while ($row = $result->fetch_assoc()){
                                 print '

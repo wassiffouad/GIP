@@ -12,7 +12,7 @@ header {
   background: -webkit-linear-gradient(left, #f5f5f5, cornflowerblue);
 }
 #hallo{
-  background: -webkit-linear-gradient(left, #241a1a, #545c6b);
+  background: -webkit-linear-gradient(left, #3b798a, #545c6b);
 }
 
 .logo {
@@ -76,6 +76,9 @@ nav {
 
 
 @media screen and (max-height: 450px) {
+  #hidden{
+    display: none;
+  }
   .overlay a {
     font-size: 20px;
   }

@@ -1,7 +1,6 @@
 <?php
 include "hoofding.php";
 
-
 $sql2 = mysqli_query($conn, "SELECT * FROM tblposts");
 if(mysqli_num_rows($sql2) > 0){
     $row2 = mysqli_fetch_assoc($sql2);
@@ -129,6 +128,7 @@ if(mysqli_num_rows($sql2) > 0){
                                           <div class="card-body">
                                             <img class="card-img-top" style="height: 286px; width: 286px;" src="../images/posts/'. $row["foto"] . '"">
                                             <h5 class="card-title">'. $row["soort"]. '</h5>
+                                            <p class="card-text">'. $row["datum"]. '</p>
                                             <p class="card-text">'. $row["datum"]. '</p>
                                         ';
 

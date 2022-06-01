@@ -86,12 +86,15 @@ if (!isset($_SESSION['unique_id'])) {
     <div class="container">
         <div class="row" id="hallo" style="box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;">
             <div class="col-lg-3">
-                <div class="header">
-                    <a  class="logo" href="index1.php"><img src="images/wasco.png" alt="" style="height: 60px;"></a>
+                <div class="header" id="hidden">
+                    <a  class="logo" href="index1.php"><img src="images/shique.png" alt="" style="height: 150px; width: 200px;"></a>
                 </div>
             </div>
             <div class="col-lg-6">
                 <nav class="navbar navbar-expand-lg">
+                    <div class="header">
+                        <a  class="logo" href="index1.php"><img src="images/shique.png" alt="" style="height: 150px; width: 200px;"></a>
+                    </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" style="  width: 35px; height: 5px; background-color: cornflowerblue; margin: 6px 0;">
                         <span class="navbar-toggler-icon"></span>
@@ -100,12 +103,13 @@ if (!isset($_SESSION['unique_id'])) {
                         <ul class="navbar-nav">
                             <?php
                             if ($row["subscription_id"] === '0') {
-                                print ' 
+                                print '
                                 <li class="nav-item active ">
                                     <a class="nav-link cta" href="index1.php">Home<span class="sr-only">(current)</span></a>
-                                </li>
+                                </li> 
+                                
                                 <li class="nav-item">
-                                    <a class="nav-link" href="abbonementen/abbonement.php">Subscribe to chat and post</a>
+                                    <a class="nav-link" href="abbonementen/abbonement.php">Subscribe</a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="account_pagina/wachtwoord.php">Password</a>
@@ -120,7 +124,7 @@ if (!isset($_SESSION['unique_id'])) {
                             } else {
                                 print '
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="index1.php">Home<span class="sr-only">(current)</span></a>
+                                    <a class="nav-link cta" href="index1.php">Home<span class="sr-only">(current)</span></a>
                                 </li>
                                 <li class="nav-item">
                                     <a class="nav-link" href="abbonementen/abbonement.php">Subscription<span class="sr-only">(current)</span></a>
@@ -156,6 +160,7 @@ if (!isset($_SESSION['unique_id'])) {
 
 
 <!-- Featured Section Begin -->
+
 <section class="featured spad">
     <?php
     include "connect.php";
@@ -181,7 +186,7 @@ if (!isset($_SESSION['unique_id'])) {
     $this_page_first_result = ($page - 1) * $results_per_page;
 
     //neem geselecteerde resultaten van database en toon op pagina
-    $sql9 = "SELECT * FROM tblposts LIMIT " . $this_page_first_result . ',' . $results_per_page;
+    $sql9 = "SELECT * FROM tblposts ORDER by datum DESC  LIMIT " . $this_page_first_result . ',' . $results_per_page;
     $result = mysqli_query($conn, $sql9);
 
 

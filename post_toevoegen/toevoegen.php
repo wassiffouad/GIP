@@ -177,7 +177,7 @@ if (isset($_POST["knopje"])) {
             </div>
             <div class="field input">
                 <label>Description</label>
-                <input type="text" name="beschrijving" placeholder="" required>
+                <textarea rows="4" cols="50" name="beschrijving" required></textarea>
             </div>
             <div class="field input">
                 <label>Price</label>
@@ -198,7 +198,7 @@ if (isset($_POST["knopje"])) {
                 <input type="file" name="afbeelding" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
             </div>
             <div class="field button">
-                <input type="submit" name="knopje" value="Voeg toe">
+                <input type="submit" name="knopje" value="Add Item">
             </div>
         </form>
     </section>

@@ -6,6 +6,8 @@ include "hoofding.php";
 $sql1 = "SELECT * FROM users";
 $row = $mysqli->query($sql1) -> fetch_assoc();
 
+$sql7 = "SELECT * FROM tblposts WHERE poster = {$_SESSION['unique_id']}";
+$row3 = $mysqli->query($sql7) -> fetch_assoc();
 
 
 if (isset($_POST["knop"])) {
@@ -21,25 +23,34 @@ if (isset($_POST["knop"])) {
 
     //foto
     if ($_SERVER['REQUEST_METHOD'] == "POST"){
+        echo "<pre>";
+        print_r($_POST);
+        print_r($_FILES);
+        echo "</pre>";
 
 
-        if (isset($_FILES["file"]["name"])){
-            $img_name = $_FILES['file']['name'];
-            $img_type = $_FILES['file']['type'];
-            $tmp_name = $_FILES['file']['tmp_name'];
+if (isset($_FILES["file"]["name"]) && $_FILES["file"]["name"] != ""){
+    $img_name = $_FILES['file']['name'];
+    $img_type = $_FILES['file']['type'];
+    $tmp_name = $_FILES['file']['tmp_name'];
 
+    $img_explode = explode('.',$img_name);
+    $img_ext = end($img_explode);
+    $extensions = ["jpeg", "png", "jpg"];
+    if(in_array($img_ext, $extensions) === true) {
+        $types = ["image/jpeg", "image/jpg", "image/png"];
+        if(in_array($img_type, $types) === true) {
+            $new_img_name = $img_name;
+            if(move_uploaded_file($tmp_name,"../images/posts/".$new_img_name)) {
 
-
-                    if(move_uploaded_file($tmp_name,"images/posts/".$img_name)) {
-
-                        $sql = "UPDATE tblposts SET volgnummer = '0', foto ='" .$img_name . "', soort='" .$naam . "', beschrijvingPost='" .$beschrijving . "', poster='" .$_SESSION["unique_id"] . "', 
-                        datum='" .$date . "', likes= '0', zoekertje= 'false',prijs='" .$prijs . "',stad='" .$stad . "', postcode='" .$postcode . "',id_user='" .$_SESSION["user_id"] . "'";
+                        $sql = "UPDATE tblposts SET volgnummer ='" . $row3['volgnummer'] . "' , foto ='" .$img_name . "', soort='" .$naam . "', beschrijvingPost='" .$beschrijving . "', poster='" .$_SESSION["unique_id"] . "', 
+                        datum='" .$date . "', likes= 0, zoekertje= false,prijs='" .$prijs . "',stad='" .$stad . "', postcode='" .$postcode . "',id_user='" .$_SESSION["user_id"] . "'";
                         $resultaat = $mysqli->query($sql);
-
-                        header("Location: account.php");
+                        header("Location: edit_posts.php");
                     }
 
-
+        }
+    }
 
 
         }else{
@@ -105,7 +116,7 @@ if (isset($_POST["knop"])) {
                     </div>
                     <div class="row">
                         <div class="col-md-12">
-                            <form method="post" action="wijzig.php" autocomplete="off">
+                            <form method="post" action="wijzig.php" autocomplete="off" enctype="multipart/form-data">
                                 <div class="form-group row">
                                     <label for="name" class="col-4 col-form-label">Type</label>
                                     <div class="col-8">
@@ -137,9 +148,9 @@ if (isset($_POST["knop"])) {
                                     </div>
                                 </div>                                
                                 <div class="form-group row">
-                                     <label  class="col-4 col-form-label">Select Image</label>
-                                    <div class="col-8">                                     
-                                        <input type="file" name="afbeelding" accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
+                                    <label  class="col-4 col-form-label">Select Image</label>
+                                    <div class="col-8">
+                                        <input type="file" name="file"required>
                                     </div>
                                 </div>
                                 <div class="form-group row">
